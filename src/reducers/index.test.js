@@ -1,10 +1,14 @@
 import faker from 'faker'
-import reducer, { __RewireAPI__ as RewiredApi } from './index'
+import Immutable from 'seamless-immutable'
+import reducer from './index'
 import * as actionTypes from '../actions/constants'
 
 describe('reducers', () => {
   let value = faker.lorem.word()
-  let initialState = RewiredApi.__get__('initialState')
+  let initialState = Immutable({
+    data: {},
+    isFetching: false
+  })
 
   it('should return the initial state', () => {    
     expect(reducer(undefined, {})).toEqual(initialState)
@@ -41,6 +45,6 @@ describe('reducers', () => {
       type: actionTypes.ORIOLE_SEARCH_CENCEL,
       payload: value
     }
-    expect(reducer(initialState, action)).toEqual({ data: value, isFetching: false })
+    expect(reducer(initialState, action)).toEqual({ ...initialState, isFetching: false })
   })
 })
