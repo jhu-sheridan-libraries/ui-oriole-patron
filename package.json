@@ -9,7 +9,6 @@
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
     "react-router-redux": "^4.0.8",
-    "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-saga": "^0.16.2",
@@ -31,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "react-scripts": "2.1.1",
     "babel-plugin-rewire": "^1.2.0",
     "faker": "^4.1.0"
   }
