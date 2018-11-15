@@ -1,23 +1,10 @@
 import { all, takeLatest, fork, call, put } from 'redux-saga/effects'
 import 'regenerator-runtime/runtime'
 import qs from 'query-string'
-import { push, LOCATION_CHANGE } from 'react-router-redux'
+import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
 import { ORIOLE_SEARCH } from '../actions/constants'
-
-const searchOriole = (searchParams) => {
-  let url = `${ process.env.LARA_API }?page[size]=5&filter[keyword]=${ searchParams.query }`
-  return new Promise((resolve, reject) => {
-    if (searchParams.query) {
-      return fetch(url, {})
-        .then(response => response.json())
-        .then(json => resolve(json))
-        .catch(error => reject(error))
-    } else {
-      return reject({error: 'emtpy search params'})
-    }
-  }) 
-}
+import { searchOriole } from '../apis/oriole'
 
 // A saga to do the search 
 function* search(callApi, action) {

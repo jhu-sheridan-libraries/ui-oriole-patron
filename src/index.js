@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import createHistory from 'history/createBrowserHistory';
 import { Route } from 'react-router'
-import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
+import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import sagas from './sagas';
@@ -16,7 +16,7 @@ const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
 const historyMiddleware = routerMiddleware(history);
 const middlewares = [ sagaMiddleware, historyMiddleware ];
-const rootReducer  = combineReducers({ ...reducers, router: routerReducer });
+const rootReducer  = combineReducers({ ...reducers, router: connectRouter(history) });
 const store = applyMiddleware(...middlewares)(createStore)(rootReducer);
 sagaMiddleware.run(sagas);
 
