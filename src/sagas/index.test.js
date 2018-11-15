@@ -1,6 +1,6 @@
 import { expectSaga } from 'redux-saga-test-plan'
 import faker from 'faker'
-import { LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'connected-react-router'
 import { __RewireAPI__ as Saga } from './index'
 import * as actionTypes from '../actions/constants'
 
