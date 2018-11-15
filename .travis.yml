@@ -1,0 +1,15 @@
+language: node_js
+cache: yarn
+sudo: false
+addons:
+  code_climate:
+    repo_token: 74b38daf4b9c9268c13ccf14694a17836f2d52b4eb77e0e163f596b08963f96f
+node_js:
+  - "9"
+  - "10"
+  - "11"
+script:
+  - yarn test --coverage
+after_script:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < ./coverage/lcov.info
