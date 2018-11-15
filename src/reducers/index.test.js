@@ -1,14 +1,11 @@
 import faker from 'faker'
 import Immutable from 'seamless-immutable'
-import reducer from './index'
+import reducer, { __RewireAPI__ as RewireAPI } from './index'
 import * as actionTypes from '../actions/constants'
 
 describe('reducers', () => {
   let value = faker.lorem.word()
-  let initialState = Immutable({
-    data: {},
-    isFetching: false
-  })
+  let initialState = RewireAPI.__get__('initialState')
 
   it('should return the initial state', () => {    
     expect(reducer(undefined, {})).toEqual(initialState)

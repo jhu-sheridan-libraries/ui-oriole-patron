@@ -1,6 +1,6 @@
 import { expectSaga } from 'redux-saga-test-plan'
 import faker from 'faker'
-import { push, LOCATION_CHANGE } from 'react-router-redux'
+import { LOCATION_CHANGE } from 'react-router-redux'
 import { __RewireAPI__ as Saga } from './index'
 import * as actionTypes from '../actions/constants'
 
@@ -24,14 +24,13 @@ describe('Saga', () => {
     it('calls api and creates a namespaced action for router LOCATION_CHANGE', () => {
       const search = Saga.__get__('search')
       const callApi = value => ({ value })
-      const namespace = faker.lorem.word()
       const searchTerm = faker.lorem.word()
       const action = {
         type: LOCATION_CHANGE,
         payload: { search: `q=${ searchTerm }` }
       }
-      return expectSaga(search, namespace, callApi, action) 
-        .put({ type: `${ namespace }/${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { value: { query: searchTerm }}})
+      return expectSaga(search, callApi, action) 
+        .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { value: { query: searchTerm }}})
         .run()
     })
   })
