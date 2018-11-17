@@ -3,7 +3,7 @@ cache: yarn
 sudo: false
 addons:
   code_climate:
-    repo_token: 74b38daf4b9c9268c13ccf14694a17836f2d52b4eb77e0e163f596b08963f96f
+    repo_token: d3d40174fa6772b8d690d2e5af5fb54975f12bbb6291efa2998eb1da87f60f90
 node_js:
   - "9"
   - "10"
