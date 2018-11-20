@@ -1,6 +1,5 @@
 import faker from 'faker'
-import Immutable from 'seamless-immutable'
-import reducer, { __RewireAPI__ as RewireAPI } from './index'
+import reducer, { __RewireAPI__ as RewireAPI } from './search'
 import * as actionTypes from '../actions/constants'
 
 describe('reducers', () => {
@@ -13,10 +12,9 @@ describe('reducers', () => {
 
   it('should handle ORIOLE_SEARCH_BEGIN', () => {
     const action = {
-      type: actionTypes.ORIOLE_SEARCH_BEGIN,
-      payload: value
+      type: actionTypes.ORIOLE_SEARCH_BEGIN
     }
-    expect(reducer(initialState, action)).toEqual({ data: value, isFetching: true })
+    expect(reducer(initialState, action)).toEqual({ ...initialState, data: {}, meta: { ...initialState.meta, isFetching: true } })
   })
 
   it('should handle ORIOLE_SEARCH_SUCCESS', () => {
@@ -24,7 +22,7 @@ describe('reducers', () => {
       type: actionTypes.ORIOLE_SEARCH_SUCCESS,
       payload: value
     }
-    expect(reducer(initialState, action)).toEqual({ data: value, isFetching: false })
+    expect(reducer(initialState, action)).toEqual({ ...initialState, data: value, meta: { ...initialState.meta, isFetching: false }})
   })
 
   it('should handle ORIOLE_SEARCH_ERROR', () => { 
@@ -34,7 +32,7 @@ describe('reducers', () => {
       payload: error,
       error: true
     }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, error: error, isFetching: false })
+    expect(reducer(initialState, action)).toEqual({ ...initialState, error: error, meta: { ...initialState.meta, isFetching: false }})
   })
 
   it('should handle ORIOLE_SEARCH_CANCEL', () => {
@@ -42,6 +40,13 @@ describe('reducers', () => {
       type: actionTypes.ORIOLE_SEARCH_CENCEL,
       payload: value
     }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, isFetching: false })
+    expect(reducer(initialState, action)).toEqual({ ...initialState, meta: { ...initialState.meta, isFetching: false }})
+  })
+
+  it('should handle ORIOLE_FETCH_BEGIN', () => {
+    const action = {
+      type: actionTypes.ORIOLE_FETCH_BEGIN
+    }
+    expect(reducer(initialState, action)).toEqual({ ...initialState, meta: { ...initialState.meta, isFetching: true }})
   })
 })
