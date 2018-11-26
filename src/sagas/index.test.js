@@ -9,28 +9,30 @@ describe('Saga', () => {
 
     it('calls api and creates a namespaced action for ORIOLE_SEARCH', () => {
       const search = Saga.__get__('search')
-      const callApi = value => ({ value })
+      const response = faker.lorem.slug
+      const apiCall = value => response
       const searchTerm = faker.lorem.word()
       const action = {
         type: actionTypes.ORIOLE_SEARCH,
         payload: { query: searchTerm }
       }
       
-      return expectSaga(search, callApi, action)
-        .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { value: { query: searchTerm }}})
+      return expectSaga(search, apiCall, action)
+        .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
         .run()
     })
 
     it('calls api and creates a namespaced action for router LOCATION_CHANGE', () => {
       const search = Saga.__get__('search')
-      const callApi = value => ({ value })
+      const response = faker.lorem.slug
+      const apiCall = value => response
       const searchTerm = faker.lorem.word()
       const action = {
         type: LOCATION_CHANGE,
-        payload: { search: `q=${ searchTerm }` }
+        payload: { search: `q=${ searchTerm }`, page: 0 }
       }
-      return expectSaga(search, callApi, action) 
-        .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { value: { query: searchTerm }}})
+      return expectSaga(search, apiCall, action) 
+      .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
         .run()
     })
   })

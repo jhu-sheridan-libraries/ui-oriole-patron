@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { search } from '../actions'
+import ResourceList from './ResourceList'
 
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearch: (props, query) => {
     // dispatch search for a new query
     if (query && query !== props.searchTerm) {
-      dispatch(search({ query: query }))
+      dispatch(search({ query: query, page: 0 }))
     }
   }
 })
@@ -69,6 +70,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="main-container">
+          <ResourceList />
         </div>
       </div>
     )

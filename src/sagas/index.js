@@ -3,26 +3,28 @@ import 'regenerator-runtime/runtime'
 import qs from 'query-string'
 import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
-import { ORIOLE_SEARCH } from '../actions/constants'
+import { ORIOLE_SEARCH, ORIOLE_FETCH } from '../actions/constants'
 import { searchOriole } from '../apis/oriole'
 
 // A saga to do the search 
-function* search(callApi, action) {
-  let value
+function* search(apiCall, action) {
+  let searchParams = {}
   if (action.type === LOCATION_CHANGE) {
-    let queryParams = qs.parse(action.payload.search)
-    value = { query: queryParams.q }
+    let urlParams = qs.parse(action.payload.search)
+    searchParams = { query: urlParams.q }
   } else if (action.type === ORIOLE_SEARCH) {
-    value = action.payload
-  } else {
-    // TODO: yield an error
+    searchParams = { ...action.payload }
+  } else if (action.type === ORIOLE_FETCH) {
+    searchParams = action.payload
   }
-  yield put(actions.beginSearch(value))
-  try {
-    const response = yield call(callApi, value)    
-    yield put(actions.finishSearch(response))
-  } catch (e) {
-    yield put(actions.failSearch(value))
+  if (searchParams.query) {  // fetch only when query is not empty
+    yield put(actions.beginSearch(searchParams))
+    try {
+      const response = yield call(apiCall, searchParams)    
+      yield put(actions.finishSearch({ response, searchParams }))
+    } catch (error) {
+      yield put(actions.failSearch({ error, searchParams }))
+    }
   }
 }
 

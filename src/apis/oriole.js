@@ -1,8 +1,17 @@
+import qs from 'query-string'
+
 export const searchOriole = (searchParams) => {
-  console.log('search oriole')
-  let url = `${ process.env.REACT_APP_API_ROOT }/oriole-resources?limit=30&query=(title="*${ searchParams.query }*" or description="*${ searchParams.query }*") sortby title`
+  let query = searchParams.query
+  let page = searchParams.page || 0
+  let pageSize = searchParams.pageSize || 20
+  const params = {
+    query: `(title="*${ query }*" or description="*${ query }*") sortby title`,
+    offset: page * pageSize,
+    limit: pageSize
+  }
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole-resources?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
-    if (searchParams.query) {
+    if (query) {
       return fetch(url, { 
         headers: { 
           'X-Okapi-Tenant': 'diku',
@@ -18,7 +27,7 @@ export const searchOriole = (searchParams) => {
       .then(json => resolve(json))
       .catch(error => reject(error))
     } else {
-      return reject({error: 'emtpy search params'})
+      return reject({error: 'empty search params'})
     }
   }) 
 }
