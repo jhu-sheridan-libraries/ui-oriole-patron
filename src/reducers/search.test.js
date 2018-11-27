@@ -11,63 +11,39 @@ describe('reducers', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })
 
-  it('should handle ORIOLE_SEARCH_BEGIN', () => {
+  it('should handle ORIOLE_FETCH_BEGIN', () => {
     const action = {
-      type: actionTypes.ORIOLE_SEARCH_BEGIN,
+      type: actionTypes.ORIOLE_FETCH_BEGIN,
       payload: { query: query, page: 0 }
     }
     expect(reducer(initialState, action)).toEqual({ ...initialState, query: query, data: {}, meta: { ...initialState.meta, isFetching: true } })
   })
 
-  it('should handle ORIOLE_SEARCH_SUCCESS', () => {
+  it('should handle ORIOLE_FETCH_SUCCESS', () => {
     const state = { ...initialState, query: query }
     const action = {
-      type: actionTypes.ORIOLE_SEARCH_SUCCESS,
-      payload: data
+      type: actionTypes.ORIOLE_FETCH_SUCCESS,
+      payload: { response: data, searchParams: { query: query } }
     }
     expect(reducer(state, action)).toEqual({ ...state, data: data, meta: { ...state.meta, isFetching: false }})
   })
 
-  it('should handle ORIOLE_SEARCH_ERROR', () => { 
+  it('should handle ORIOLE_FETCH_ERROR', () => { 
     const error = new TypeError(faker.lorem.word())
     const action = {
-      type: actionTypes.ORIOLE_SEARCH_ERROR,
+      type: actionTypes.ORIOLE_FETCH_ERROR,
       payload: error,
       error: true
     }
     expect(reducer(initialState, action)).toEqual({ ...initialState, error: error, meta: { ...initialState.meta, isFetching: false }})
   })
 
-  it('should handle ORIOLE_SEARCH_CANCEL', () => {
+  it('should handle ORIOLE_FETCH_CANCEL', () => {
     const action = {
-      type: actionTypes.ORIOLE_SEARCH_CENCEL,
+      type: actionTypes.ORIOLE_FETCH_CANCEL,
       payload: query
     }
     expect(reducer(initialState, action)).toEqual({ ...initialState, meta: { ...initialState.meta, isFetching: false }})
   })
 
-  it('should handle ORIOLE_FETCH_BEGIN', () => {
-    const action = {
-      type: actionTypes.ORIOLE_FETCH_BEGIN
-    }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, meta: { ...initialState.meta, isFetching: true }})
-  })
-
-  it('should handle ORIOLE_FETCH_ERROR', () => {
-    const error = new TypeError(query)
-    const action = {
-      type: actionTypes.ORIOLE_FETCH_ERROR,
-      payload: error, 
-      error: true
-    }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, error: error, meta: { ...initialState.meta, isFetching: false }})
-  })
-
-  it('should handle ORIOLE_FETCH_SUCCESS', () => {
-    const action = {
-      type: actionTypes.ORIOLE_FETCH_SUCCESS,
-      payload: query
-    }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, data: query, meta: { ...initialState.meta, page: 1, isFetching: false }})
-  })
 })

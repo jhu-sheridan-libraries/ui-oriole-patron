@@ -17,26 +17,17 @@ export const searchReducers = handleActions({
   [actions.search]: (state, { payload }) => ({
     ...state, query: payload.query
   }),
-  [actions.beginSearch]: (state, { payload }) => ({
+  [actions.beginFetch]: (state, { payload }) => ({
     ...state, query: payload.query, data: {}, meta: { ...state.meta, isFetching: true, page: payload.page }
   }),
-  [actions.finishSearch]: (state, { payload }) => ({
+  [actions.finishFetch]: (state, { payload }) => ({
     ...state, query: payload.searchParams.query, data: payload.response, meta: { ...state.meta, isFetching: false }
   }),
-  [actions.failSearch]: (state, { payload }) => ({
+  [actions.failFetch]: (state, { payload }) => ({
     ...state, error: payload, data: {}, meta: { ...state.meta, isFetching: false }
   }),
-  [actions.cancelSearch]: (state, { payload }) => ({
-    ...state, data: payload, isFetching: false
-  }),
-  [actions.beginFetch]: (state, { payload }) => ({
-    ...state, meta: { ...state.meta, isFetching: true }
-  }),
-  [actions.finishFetch]: (state, { payload }) => ({
-    ...state, data: payload, meta: { ...state.meta, page: state.meta.page+1, isFetching: false }
-  }), 
-  [actions.failFetch]: (state, { payload }) => ({
-    ...state, error: payload, meta: { ...state.meta, isFetching: false }
+  [actions.cancelFetch]: (state, { payload }) => ({
+    ...state, data: {}, error: undefined, meta: { ...state.meta, isFetching: false }
   })
 }, initialState)
 

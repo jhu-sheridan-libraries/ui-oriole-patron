@@ -5,7 +5,6 @@ import ResourceItem from './ResouceItem'
 
 const mapStateToProps = ( { search }) => {
   if (search) {
-    console.log('mapStateToProps', search)
     const { data, isFetching } = search
     if (data.totalRecords) {
       return {

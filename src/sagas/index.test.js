@@ -18,7 +18,7 @@ describe('Saga', () => {
       }
       
       return expectSaga(search, apiCall, action)
-        .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
+        .put({ type: `${ actionTypes.ORIOLE_FETCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
         .run()
     })
 
@@ -32,7 +32,7 @@ describe('Saga', () => {
         payload: { search: `q=${ searchTerm }`, page: 0 }
       }
       return expectSaga(search, apiCall, action) 
-      .put({ type: `${ actionTypes.ORIOLE_SEARCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
+      .put({ type: `${ actionTypes.ORIOLE_FETCH_SUCCESS }`, payload: { response, searchParams: { query: searchTerm }}})
         .run()
     })
   })

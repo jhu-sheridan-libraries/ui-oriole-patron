@@ -18,12 +18,12 @@ function* search(apiCall, action) {
     searchParams = action.payload
   }
   if (searchParams.query) {  // fetch only when query is not empty
-    yield put(actions.beginSearch(searchParams))
+    yield put(actions.beginFetch(searchParams))
     try {
       const response = yield call(apiCall, searchParams)    
-      yield put(actions.finishSearch({ response, searchParams }))
+      yield put(actions.finishFetch({ response, searchParams }))
     } catch (error) {
-      yield put(actions.failSearch({ error, searchParams }))
+      yield put(actions.failFetch({ error, searchParams }))
     }
   }
 }
