@@ -5,17 +5,15 @@ import ResourceItem from './ResouceItem'
 
 const mapStateToProps = ( { search }) => {
   if (search) {
-    const { data, isFetching } = search
+    const { data, meta } = search
     if (data.totalRecords) {
       return {
         ...data,
-        isFetching,
+        isFetching: meta.isFetching,
       }
     } else {
-      return { isFetching: false }
+      return { isFetching: meta.isFetching }
     }
-  } else {
-    return { isFetching: false }
   }
 }
 

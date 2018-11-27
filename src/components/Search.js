@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
+import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
 
@@ -59,19 +60,15 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <div className="container search-container">
-          <div className="input-group">
-            <input type="text" name="q" id="q" className="q form-control" placeholder="Search" autoComplete="off" autoFocus="autofocus" value={ this.state.searchTerm } onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange }/>
-            <span className="input-group-btn">
-              <button type="submit" className="btn btn-primary search-btn" id="search" onClick={ this.handleClick }>
-                <span className="submit-search-text">Search</span>
-              </button>
-            </span>
-          </div>
-        </div>
-        <div className="main-container">
+        <Container>
+          <InputGroup>
+            <Input placeholder="Search" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
+            <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button> 
+          </InputGroup>
+        </Container>
+        <Container className="main-container">
           <ResourceList />
-        </div>
+        </Container>
       </div>
     )
   }
