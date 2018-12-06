@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
-import { search } from '../actions'
+import { search, fetch } from '../actions'
 import ResourceList from './ResourceList'
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,8 +19,11 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearch: (props, query) => {
     // dispatch search for a new query
     if (query && query !== props.searchTerm) {
-      dispatch(search({ query: query, page: 0 }))
+      dispatch(search({ query: query }))
     }
+  }, 
+  handleFetch: (props, query) => {
+    dispatch(fetch({ query: query }))
   }
 })
 

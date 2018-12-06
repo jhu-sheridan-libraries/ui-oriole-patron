@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Waypoint from 'react-waypoint'
 import ResourceItem from './ResouceItem'
+import { fetch } from '../actions'
 
 const mapStateToProps = ( { search }) => {
   if (search) {
@@ -17,12 +19,21 @@ const mapStateToProps = ( { search }) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  handleFetch: (props) => {
+    dispatch(fetch())
+  }
+})
+
 class ResourceList extends Component {
+
+  fetchResources = () => {
+    this.props.handleFetch(this.props)
+  }
+
   render() {
     const { resources, isFetching } = this.props
-    if (isFetching) {
-      return (<div>Loading...</div>)
-    } else if (resources) {
+    if (resources) {
       const items = this.props.resources.map((record, index) => 
         <ResourceItem key={ record.id } record={ record } index={ index } />
       )
@@ -31,6 +42,8 @@ class ResourceList extends Component {
         <div id={ this.props.id } className='resoruce-list'>
           { this.props.totalRecords >= 0 && <div className='count'>{ this.props.totalRecords.toLocaleString('en') } Results</div> }
           <div className='resource-content'>{ body }</div>
+          { isFetching && <div>Loading...</div> }
+          <Waypoint onEnter={ this.fetchResources } />          
         </div>
       )
     } else {
@@ -50,4 +63,4 @@ ResourceList.propTypes = {
   isFetching: PropTypes.bool,
 }
 
-export default connect(mapStateToProps)(ResourceList)
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceList)

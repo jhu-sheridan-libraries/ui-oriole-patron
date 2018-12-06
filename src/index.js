@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Provider } from 'react-redux'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import createHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
+import { Route, Switch } from 'react-router'
 import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
@@ -12,6 +12,7 @@ import reducers from './reducers'
 import sagas from './sagas'
 import './index.css'
 import Search from './components/Search'
+import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
 const history = createHistory()
@@ -25,7 +26,12 @@ sagaMiddleware.run(sagas)
 ReactDOM.render(
   <Provider store={ store }>
     <ConnectedRouter history={ history }>
-      <Route path='/' component={ Search }/>
+      <div>
+        <Switch>
+          <Route exact path='/' component={ Search }/>
+          <Route path='/list' component={ App }/>
+        </Switch>
+      </div>
     </ConnectedRouter>
   </Provider>, 
   document.getElementById('root'))
