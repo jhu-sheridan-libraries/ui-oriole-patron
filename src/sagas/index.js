@@ -12,7 +12,8 @@ const getQuery = state => state.search.query
 // A saga to do the search 
 function* search(apiCall, action) {
   let searchParams = {}
-  if (action.type === LOCATION_CHANGE) {
+  if (action.type === LOCATION_CHANGE && action.payload.action === 'POP') { 
+    // only handles location change from browser
     let urlParams = qs.parse(action.payload.location.search)
     searchParams = { query: urlParams.q, isNewSearch: true }
   } else if (action.type === ORIOLE_SEARCH) {
