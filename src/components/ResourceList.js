@@ -5,7 +5,7 @@ import Waypoint from 'react-waypoint'
 import ResourceItem from './ResouceItem'
 import { fetch } from '../actions'
 
-const mapStateToProps = ( { search }) => {
+const mapStateToProps = ({ search }) => {
   if (search) {
     const { data, meta } = search
     if (data.totalRecords) {
@@ -21,7 +21,10 @@ const mapStateToProps = ( { search }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   handleFetch: (props) => {
-    dispatch(fetch())
+    const { resources, totalRecords } = props
+    if (resources.length < totalRecords) {
+      dispatch(fetch())
+    }    
   }
 })
 
