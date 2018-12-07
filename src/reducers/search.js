@@ -4,7 +4,7 @@ import * as actions from '../actions'
 
 const initialState = Immutable({
   query: undefined,    // the query term
-  data: {},            // the result
+  data: { resources: [], totalRecoards: 0 }, // the result
   error: undefined,    // error object
   meta: {
     isFetching: false, // if it's in the middle of fetching
@@ -20,10 +20,10 @@ export const searchReducers = handleActions({
   }),
   [actions.beginFetch]: (state, { payload }) => {
     let data, page
-    if (payload.isNewSearch === true) {
-      data = {}
+    if (payload.isNewSearch) { // new search, reset data and page
+      data = { resources: [], totalRecoards: 0 }
       page = 0
-    } else {
+    } else {  
       data = state.data
       page = state.meta.page + 1
     }
@@ -39,10 +39,10 @@ export const searchReducers = handleActions({
     return { ...state, query: payload.searchParams.query, data: data, meta: { ...state.meta, isFetching: false } }
   },
   [actions.failFetch]: (state, { payload }) => ({
-    ...state, error: payload, data: {}, meta: { ...state.meta, isFetching: false }
+    ...state, error: payload, meta: { ...state.meta, isFetching: false }
   }),
   [actions.cancelFetch]: (state, { payload }) => ({
-    ...state, data: {}, error: undefined, meta: { ...state.meta, isFetching: false }
+    ...state, error: undefined, meta: { ...state.meta, isFetching: false }
   })
 }, initialState)
 
