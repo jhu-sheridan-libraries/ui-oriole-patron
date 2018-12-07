@@ -29,7 +29,7 @@ describe('reducers', () => {
   })
 
   it('should handle ORIOLE_FETCH_SUCCESS', () => {
-    const state = { ...initialState, query: query }
+    const state = { ...initialState, query: query } 
     const data = { resources: [ faker.lorem.word(), faker.lorem.word() ], totalRecords: 2 }
     const action = {
       type: actionTypes.ORIOLE_FETCH_SUCCESS,

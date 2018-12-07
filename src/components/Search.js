@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
-import { search, fetch } from '../actions'
+import { search } from '../actions'
 import ResourceList from './ResourceList'
 
 const mapStateToProps = (state, ownProps) => {

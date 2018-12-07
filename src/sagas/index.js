@@ -5,7 +5,7 @@ import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
 import { ORIOLE_SEARCH, ORIOLE_FETCH } from '../actions/constants'
 import { searchOriole } from '../apis/oriole'
-import { getSearchPage, getSearchQuery } from '../selectors/search'
+import * as selectors from '../selectors/search'
 
 // A saga to do the search 
 function* search(apiCall, action) {
@@ -17,13 +17,14 @@ function* search(apiCall, action) {
   } else if (action.type === ORIOLE_SEARCH) {
     searchParams = { ...action.payload, isNewSearch: true }
   } else if (action.type === ORIOLE_FETCH) {
-    const query = yield select(getSearchQuery)
+    // fetch more results. get current query from state
+    const query = yield select(selectors.getQuery)
     searchParams = { query: query, isNewSearch: false }
   }
   if (searchParams.query) {  // fetch only when query is not empty
     yield put(actions.beginFetch(searchParams))
     try {
-      searchParams.page = yield select(getSearchPage)  
+      searchParams.page = yield select(selectors.getPage)  
       const response = yield call(apiCall, searchParams)  
       yield put(actions.finishFetch({ response, searchParams }))
     } catch (error) {

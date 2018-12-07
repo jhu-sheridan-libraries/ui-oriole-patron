@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import Waypoint from 'react-waypoint'
 import ResourceItem from './ResouceItem'
 import { fetch } from '../actions'
-import { getSearchTotalRecords, isSearchFetching, getSearchResources } from '../selectors/search'
+import * as selectors from '../selectors/search'
 
 const mapStateToProps = state => ({
-  totalRecords: getSearchTotalRecords(state),
-  isFetching: isSearchFetching(state),
-  resources: getSearchResources(state)
+  totalRecords: selectors.getTotalRecords(state),
+  isFetching: selectors.isFetching(state),
+  resources: selectors.getResources(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
