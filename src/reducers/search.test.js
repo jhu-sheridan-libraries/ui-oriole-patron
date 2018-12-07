@@ -30,11 +30,12 @@ describe('reducers', () => {
 
   it('should handle ORIOLE_FETCH_SUCCESS', () => {
     const state = { ...initialState, query: query }
+    const data = { resources: [ faker.lorem.word, faker.lorem.word ], totalRecords: 2 }
     const action = {
       type: actionTypes.ORIOLE_FETCH_SUCCESS,
-      payload: { response: initialData, searchParams: { query: query } }
+      payload: { response: data, searchParams: { query: query, isNewSearch: true } }
     }
-    expect(reducer(state, action)).toEqual({ ...state, data: initialData, meta: { ...state.meta, isFetching: false }})
+    expect(reducer(state, action)).toEqual({ ...state, data, meta: { ...state.meta, isFetching: false }})
   })
 
   it('should handle ORIOLE_FETCH_ERROR', () => { 
