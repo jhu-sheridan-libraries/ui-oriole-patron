@@ -34,7 +34,10 @@ class ResourceList extends Component {
           { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Results</div> }
           <div className='resource-content'>{ body }</div>
           { isFetching && <div>Loading...</div> }
-          <Waypoint onEnter={ handleFetch(this.props) } />          
+          { !isFetching && <Waypoint onEnter={({ currentPosition }) => {
+              currentPosition === Waypoint.inside && handleFetch(this.props)
+            }}
+          /> }
         </div>
       )
     } else {
