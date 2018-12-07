@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
+import { throttle } from 'throttle-debounce'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
@@ -34,6 +35,7 @@ class Search extends Component {
     } else {
       this.state = initialState
     }
+    this.autoCompleteThrottled = throttle(500, props.handleSearch)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,7 +56,9 @@ class Search extends Component {
 
   handleChange = (e) => {
     e.preventDefault()
-    this.setState({ searchTerm: e.target.value })
+    this.setState({ searchTerm: e.target.value }, () => {
+      this.autoCompleteThrottled(this.props, this.state.searchTerm.trim())
+    })
   }
 
   render() {

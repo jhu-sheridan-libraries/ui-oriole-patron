@@ -17,7 +17,8 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
     "redux-saga": "^0.16.2",
-    "seamless-immutable": "^7.1.4"
+    "seamless-immutable": "^7.1.4",
+    "throttle-debounce": "^2.0.1"
   },
   "scripts": {
     "start": "node scripts/start.js",
