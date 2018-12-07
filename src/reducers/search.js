@@ -42,9 +42,6 @@ export const searchReducers = handleActions({
   [actions.failFetch]: (state, { payload }) => ({
     ...state, error: payload, meta: { ...state.meta, isFetching: false }
   }),
-  [actions.cancelFetch]: (state, { payload }) => ({
-    ...state, error: undefined, meta: { ...state.meta, isFetching: false }
-  })
 }, initialState)
 
 export default searchReducers

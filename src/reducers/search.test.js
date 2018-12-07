@@ -59,12 +59,4 @@ describe('reducers', () => {
     expect(reducer(initialState, action)).toEqual({ ...initialState, error: error, meta: { ...initialState.meta, isFetching: false }})
   })
 
-  it('should handle ORIOLE_FETCH_CANCEL', () => {
-    const action = {
-      type: actionTypes.ORIOLE_FETCH_CANCEL,
-      payload: query
-    }
-    expect(reducer(initialState, action)).toEqual({ ...initialState, meta: { ...initialState.meta, isFetching: false }})
-  })
-
 })
