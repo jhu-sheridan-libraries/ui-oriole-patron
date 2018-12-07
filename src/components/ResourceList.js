@@ -15,31 +15,26 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   handleFetch: (props) => {
     const { resources, totalRecords } = props
-    if (resources.length < totalRecords) {
+    if (resources.length < totalRecords) { // fetch when there're more records
       dispatch(fetch())
     }    
   }
 })
 
 class ResourceList extends Component {
-
-  fetchResources = () => {
-    this.props.handleFetch(this.props)
-  }
-
   render() {
-    const { resources, isFetching } = this.props
+    const { resources, isFetching, totalRecords, id, handleFetch } = this.props
     if (resources) {
-      const items = this.props.resources.map((record, index) => 
+      const items = resources.map((record, index) => 
         <ResourceItem key={ record.id } record={ record } index={ index } />
       )
-      let body = this.props.totalRecords > 0 ? items : ''
+      let body = totalRecords > 0 ? items : ''
       return (
-        <div id={ this.props.id } className='resoruce-list'>
-          { this.props.totalRecords >= 0 && <div className='count'>{ this.props.totalRecords.toLocaleString('en') } Results</div> }
+        <div id={ id } className='resoruce-list'>
+          { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Results</div> }
           <div className='resource-content'>{ body }</div>
           { isFetching && <div>Loading...</div> }
-          <Waypoint onEnter={ this.fetchResources } />          
+          <Waypoint onEnter={ handleFetch(this.props) } />          
         </div>
       )
     } else {
@@ -50,7 +45,8 @@ class ResourceList extends Component {
 
 ResourceList.defaultProps = {
   totalRecords: -1,
-  isFetching: false
+  isFetching: false,
+  resources: []
 }
 
 ResourceList.propTypes = {

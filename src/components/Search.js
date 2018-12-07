@@ -21,9 +21,6 @@ const mapDispatchToProps = (dispatch) => ({
     if (query && query !== props.searchTerm) {
       dispatch(search({ query: query }))
     }
-  }, 
-  handleFetch: (props, query) => {
-    dispatch(fetch({ query: query }))
   }
 })
 
