@@ -35,7 +35,7 @@ class Search extends Component {
     } else {
       this.state = initialState
     }
-    this.autoCompleteThrottled = throttle(500, props.handleSearch)
+    // add throttle/debounce initialization
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class Search extends Component {
   handleChange = (e) => {
     e.preventDefault()
     this.setState({ searchTerm: e.target.value }, () => {
-      this.autoCompleteThrottled(this.props, this.state.searchTerm.trim())
+      // Call throttle/debounce for typeahead
     })
   }
 
