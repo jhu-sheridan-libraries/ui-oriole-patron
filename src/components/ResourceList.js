@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Waypoint from 'react-waypoint'
-import ResourceItem from './ResouceItem'
+import ResourceItem from './ResourceItem'
 import { fetch } from '../actions'
 import * as selectors from '../selectors/search'
 
