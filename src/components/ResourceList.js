@@ -32,9 +32,7 @@ class ResourceList extends Component {
       query: 'min-width: 1000px'
     }]
     const { resources, isFetching, totalRecords, id, handleFetch } = this.props
-    if (isFetching) {
-      return (<div>Loading...</div>)
-    } else if (resources) {
+    if (resources) {
       const items = resources.map((record, index) =>
         <ResourceItem key={ record.id } record={ record } index={ index } />
       )
