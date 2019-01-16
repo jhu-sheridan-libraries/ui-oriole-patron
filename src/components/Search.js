@@ -8,7 +8,7 @@ import ResourceList from './ResourceList'
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
   // maps the query parameter from route to props
-  if (ownProps.location.search) {
+  if (ownProps.location && ownProps.location.search) {
     let params = qs.parse(ownProps.location.search)
     searchTerm = params.q;
   }
@@ -63,7 +63,7 @@ class Search extends Component {
         <Container>
           <InputGroup>
             <Input placeholder="Search" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
-            <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button> 
+            <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
           </InputGroup>
         </Container>
         <Container className="main-container">

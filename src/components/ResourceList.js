@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ResourceItem from './ResouceItem'
+import ResourceItem from './ResourceItem'
+import Columns from 'react-columns'
 
 const mapStateToProps = ( { search }) => {
   if (search) {
@@ -19,18 +20,27 @@ const mapStateToProps = ( { search }) => {
 
 class ResourceList extends Component {
   render() {
+    let queries = [{
+      columns: 2,
+      query: 'min-width: 500px'
+    }, {
+      columns: 3,
+      query: 'min-width: 1000px'
+    }]
     const { resources, isFetching } = this.props
     if (isFetching) {
       return (<div>Loading...</div>)
     } else if (resources) {
-      const items = this.props.resources.map((record, index) => 
+      const items = this.props.resources.map((record, index) =>
         <ResourceItem key={ record.id } record={ record } index={ index } />
       )
       let body = this.props.totalRecords > 0 ? items : ''
       return (
-        <div id={ this.props.id } className='resoruce-list'>
+        <div id={ this.props.id } className='resource-list'>
           { this.props.totalRecords >= 0 && <div className='count'>{ this.props.totalRecords.toLocaleString('en') } Results</div> }
-          <div className='resource-content'>{ body }</div>
+
+              <div className='resource-content'><Columns queries={queries}>{ body }</Columns></div>
+
         </div>
       )
     } else {
