@@ -9,7 +9,7 @@ import ResourceList from './ResourceList'
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
   // maps the query parameter from route to props
-  if (ownProps.location.search) {
+  if (ownProps.location && ownProps.location.search) {
     let params = qs.parse(ownProps.location.search)
     searchTerm = params.q;
   }
@@ -35,7 +35,7 @@ class Search extends Component {
     } else {
       this.state = initialState
     }
-    // add throttle/debounce initialization
+    this.autoCompleteThrottled = throttle(500, props.handleSearch)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class Search extends Component {
   handleChange = (e) => {
     e.preventDefault()
     this.setState({ searchTerm: e.target.value }, () => {
-      // Call throttle/debounce for typeahead
+      this.autoCompleteThrottled(this.props, this.state.searchTerm.trim())
     })
   }
 
