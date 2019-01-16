@@ -11,8 +11,13 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers'
 import sagas from './sagas'
 import './index.css'
-import Search from './components/Search'
 import App from './components/App'
+import Search from './components/Search'
+import List from './components/List'
+import AZList from './components/AZList'
+import Subjects from './components/Subjects'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import * as serviceWorker from './serviceWorker'
 
 const history = createHistory()
@@ -28,12 +33,17 @@ ReactDOM.render(
     <ConnectedRouter history={ history }>
       <div>
         <Switch>
-          <Route exact path='/' component={ Search }/>
-          <Route path='/list' component={ App }/>
+          <Route path='/' component={ App }/>
+          <Route path='/Search' component={ Search }/>
+          <Route path='/List' component={ List }/>
+          <Route path='/AZList' component={ AZList }/>
+          <Route path='/Subjects' component={ Subjects }/>
+          <Route path='/Header' component={ Header }/>
+          <Route path='/Footer' component={ Footer }/>
         </Switch>
       </div>
     </ConnectedRouter>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
