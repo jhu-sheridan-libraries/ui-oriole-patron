@@ -25,9 +25,6 @@ export const listReducers = handleActions({
   }),
   [actions.failFetch]: (state, { payload }) => ({
     ...state, error: payload, data: {}, meta: { ...state.meta, isFetching: false }
-  }),
-  [actions.cancelFetch]: (state, { payload }) => ({
-    ...state, data: {}, error: undefined, meta: { ...state.meta, isFetching: false }
   })
 }, initialState)
 

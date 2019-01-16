@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
+import { throttle } from 'throttle-debounce'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
@@ -19,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearch: (props, query) => {
     // dispatch search for a new query
     if (query && query !== props.searchTerm) {
-      dispatch(search({ query: query, page: 0 }))
+      dispatch(search({ query: query }))
     }
   }
 })
@@ -34,6 +35,7 @@ class Search extends Component {
     } else {
       this.state = initialState
     }
+    // add throttle/debounce initialization
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,7 +56,9 @@ class Search extends Component {
 
   handleChange = (e) => {
     e.preventDefault()
-    this.setState({ searchTerm: e.target.value })
+    this.setState({ searchTerm: e.target.value }, () => {
+      // Call throttle/debounce for typeahead
+    })
   }
 
   render() {

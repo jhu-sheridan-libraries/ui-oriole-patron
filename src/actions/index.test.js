@@ -36,14 +36,5 @@ describe('ORIOLE search actions', () => {
       expect(actions.failFetch(error)).toEqual(expectedAction)
     })
   })
-
-  describe('ORIOLE_FETCH_CANCEL', () => {
-    it('should create an action to cancel a fetch', () => {
-      let expectedAction = {
-        type: actionTypes.ORIOLE_FETCH_CANCEL,
-        payload: value
-      }
-      expect(actions.cancelFetch(value)).toEqual(expectedAction)
-    })
-  })
+  
 })

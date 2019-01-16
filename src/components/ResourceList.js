@@ -1,22 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Waypoint from 'react-waypoint'
 import ResourceItem from './ResourceItem'
+import { fetch } from '../actions'
+import * as selectors from '../selectors/search'
 import Columns from 'react-columns'
 
-const mapStateToProps = ( { search }) => {
-  if (search) {
-    const { data, meta } = search
-    if (data.totalRecords) {
-      return {
-        ...data,
-        isFetching: meta.isFetching,
-      }
-    } else {
-      return { isFetching: meta.isFetching }
+const mapStateToProps = state => ({
+  totalRecords: selectors.getTotalRecords(state),
+  isFetching: selectors.isFetching(state),
+  resources: selectors.getResources(state)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  handleFetch: (props) => {
+    const { resources, totalRecords } = props
+    if (resources.length < totalRecords) { // fetch when there're more records
+      dispatch(fetch())
     }
   }
-}
+})
 
 class ResourceList extends Component {
   render() {
@@ -27,20 +31,23 @@ class ResourceList extends Component {
       columns: 3,
       query: 'min-width: 1000px'
     }]
-    const { resources, isFetching } = this.props
+    const { resources, isFetching, totalRecords, id, handleFetch } = this.props
     if (isFetching) {
       return (<div>Loading...</div>)
     } else if (resources) {
-      const items = this.props.resources.map((record, index) =>
+      const items = resources.map((record, index) =>
         <ResourceItem key={ record.id } record={ record } index={ index } />
       )
-      let body = this.props.totalRecords > 0 ? items : ''
+      let body = totalRecords > 0 ? items : ''
       return (
-        <div id={ this.props.id } className='resource-list'>
-          { this.props.totalRecords >= 0 && <div className='count'>{ this.props.totalRecords.toLocaleString('en') } Results</div> }
-
-              <div className='resource-content'><Columns queries={queries}>{ body }</Columns></div>
-
+        <div id={ id } className='resource-list'>
+          { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Results</div> }
+          <div className='resource-content'><Columns queries={queries}>{ body }</Columns></div>
+          { isFetching && <div>Loading...</div> }
+          { !isFetching && <Waypoint onEnter={({ currentPosition }) => {
+              currentPosition === Waypoint.inside && handleFetch(this.props)
+            }}
+          /> }
         </div>
       )
     } else {
@@ -51,7 +58,8 @@ class ResourceList extends Component {
 
 ResourceList.defaultProps = {
   totalRecords: -1,
-  isFetching: false
+  isFetching: false,
+  resources: []
 }
 
 ResourceList.propTypes = {
@@ -60,4 +68,4 @@ ResourceList.propTypes = {
   isFetching: PropTypes.bool,
 }
 
-export default connect(mapStateToProps)(ResourceList)
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceList)
