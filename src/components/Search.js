@@ -5,6 +5,7 @@ import { throttle } from 'throttle-debounce'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
+import ActiveFilters from './ActiveFilters'
 
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
@@ -65,6 +66,7 @@ class Search extends Component {
     return (
       <div>
         <Container>
+          <ActiveFilters />
           <InputGroup>
             <Input placeholder="Search" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
             <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>

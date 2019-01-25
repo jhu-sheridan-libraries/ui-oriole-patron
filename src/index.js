@@ -18,6 +18,7 @@ import AZList from './components/AZList'
 import Subjects from './components/Subjects'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ActiveFilters from './components/ActiveFilters'
 import * as serviceWorker from './serviceWorker'
 
 const history = createHistory()
@@ -40,6 +41,7 @@ ReactDOM.render(
           <Route path='/Subjects' component={ Subjects }/>
           <Route path='/Header' component={ Header }/>
           <Route path='/Footer' component={ Footer }/>
+          <Route path='/ActiveFilters' component={ ActiveFilters }/>
         </Switch>
       </div>
     </ConnectedRouter>
