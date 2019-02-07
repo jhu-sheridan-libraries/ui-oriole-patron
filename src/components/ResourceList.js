@@ -29,8 +29,9 @@ class ResourceList extends Component {
       query: 'min-width: 500px'
     }, {
       columns: 3,
-      query: 'min-width: 1000px'
+      query: 'min-width: 1000px',
     }]
+    let gap = "15px"
     const { resources, isFetching, totalRecords, id, handleFetch } = this.props
     if (resources) {
       const items = resources.map((record, index) =>
@@ -40,7 +41,7 @@ class ResourceList extends Component {
       return (
         <div id={ id } className='resource-list'>
           { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Results</div> }
-          <div className='resource-content'>{ totalRecords > 0 && <Columns queries={queries}>{ body }</Columns> }</div>
+          <div className='resource-content'>{ totalRecords > 0 && <Columns gap={gap} queries={queries}>{ body }</Columns> }</div>
           { isFetching && <div>Loading...</div> }
           { !isFetching && <Waypoint onEnter={({ currentPosition }) => {
               currentPosition === Waypoint.inside && handleFetch(this.props)

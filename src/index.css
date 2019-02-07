@@ -60,3 +60,7 @@ a.jhu-first-nav:hover {
     display: none;
   }
 }
+
+.itemDescription {
+  font-size: 11px;
+}
