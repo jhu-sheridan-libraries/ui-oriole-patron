@@ -13,7 +13,7 @@ class App extends Component {
       {this.props.children}
       <Header />
       <Row>
-        <Col className="col-2">
+        <Col className="col-2" id="Subjects">
           <Subjects />
         </Col>
         <Col classname="col-6">

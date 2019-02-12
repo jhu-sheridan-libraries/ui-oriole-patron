@@ -64,3 +64,13 @@ a.jhu-first-nav:hover {
 .itemDescription {
   font-size: 11px;
 }
+
+@media screen and (max-width: 1000px) {
+  #Subjects {
+    display: none;
+  }
+}
+
+#SearchBox {
+  padding-top: 20px;
+}

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { throttle } from 'throttle-debounce'
-import { Button, Container, Input, InputGroup } from 'reactstrap'
+import { Row, Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
 import ActiveFilters from './ActiveFilters'
+import SortButtons from './SortButtons'
 
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
@@ -65,9 +66,12 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <Container>
+        <Container className="jhu-second-nav col-12">
+          <Row>
           <ActiveFilters />
-          <InputGroup>
+          <SortButtons />
+          </Row>
+          <InputGroup id="SearchBox">
             <Input placeholder="Search" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
             <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
           </InputGroup>
