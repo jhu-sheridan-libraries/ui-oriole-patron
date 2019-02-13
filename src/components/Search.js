@@ -66,17 +66,15 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <Container className="jhu-second-nav col-12">
-          <Row>
-          <ActiveFilters />
-          <SortButtons />
-          </Row>
-          <InputGroup id="SearchBox">
-            <Input placeholder="Search" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
-            <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
-          </InputGroup>
-        </Container>
         <Container className="main-container">
+          <Row>
+            <ActiveFilters />
+            <SortButtons />
+            </Row>
+            <InputGroup id="SearchBox">
+              <Input placeholder="e.g. History Encyclopedia, or Buiness Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
+              <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
+              </InputGroup>
           <ResourceList />
         </Container>
       </div>
