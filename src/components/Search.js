@@ -72,7 +72,7 @@ class Search extends Component {
             <SortButtons />
             </Row>
             <InputGroup id="SearchBox">
-              <Input placeholder="e.g. History Encyclopedia, or Buiness Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
+              <Input placeholder="e.g. History Encyclopedia, or Business Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
               <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
               </InputGroup>
           <ResourceList />
