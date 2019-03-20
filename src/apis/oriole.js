@@ -7,9 +7,10 @@ export const searchOriole = (searchParams) => {
   const params = {
     query: `(keywords all ${ query }) OR ((title="*${ query }*" or description="*${ query }*")) sortby title`,
     offset: page * pageSize,
-    limit: pageSize
+    limit: pageSize,
+    facets: 'active'
   }
-  const url = `${ process.env.REACT_APP_API_ROOT }/oriole-resources?facets=active&query=${ qs.stringify(params) }`
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole-resources?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     if (query) {
       return fetch(url, {
