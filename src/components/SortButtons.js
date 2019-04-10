@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Col, Row, Button } from 'reactstrap';
 import { withRouter } from 'react-router'
 
-const SortButtons = (props, context) => {
+const SortButtons = (props) => {
     return (
       <Col className="col-*">
           Sort:  <Button color="primary">A-Z</Button>{' '} <Button color="secondary">Z-A</Button>{' '} <Button color="success">Relevance</Button>{' '}
