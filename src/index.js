@@ -35,7 +35,6 @@ ReactDOM.render(
     <ConnectedRouter history={ history }>
       <div>
         <Switch>
-          <Route path='/' component={ App }/>
           <Route path='/Search' component={ Search }/>
           <Route path='/List' component={ List }/>
           <Route path='/AZList' component={ AZList }/>
@@ -44,6 +43,7 @@ ReactDOM.render(
           <Route path='/Footer' component={ Footer }/>
           <Route path='/ActiveFilters' component={ ActiveFilters }/>
           <Route path='/SortButtons' component={ SortButtons }/>
+          <Route path='/' component={ App }/>
         </Switch>
       </div>
     </ConnectedRouter>
