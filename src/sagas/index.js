@@ -3,8 +3,8 @@ import 'regenerator-runtime/runtime'
 import qs from 'query-string'
 import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
-import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_LIST } from '../actions/constants'
-import { searchOriole, listOriole } from '../apis/oriole'
+import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_LIST, ORIOLE_FETCH_RECORD } from '../actions/constants'
+import { searchOriole, listOriole, getResourceOriole } from '../apis/oriole'
 import * as selectors from '../selectors/search'
 
 // A saga to do the search
@@ -45,7 +45,27 @@ function* search(apiCall, action) {
     const response = yield call(apiCall, searchParams)
     yield put(actions.finishFetch({ response, searchParams }))
   } catch (error) {
-    yield put(actions.failFetch({ error, searchParams }))  }
+    yield put(actions.failFetch({ error, searchParams }))
+  }
+}
+
+function* fetchResource(action) { // saga to fetch single resource based on altId
+  let altId
+  if (action.type === LOCATION_CHANGE  ) {
+    let { pathname } = action.payload.location
+    altId = pathname.split('/')[3]
+  } else {
+    altId = action.payload
+  }
+  console.log('altId', altId)
+
+  yield put(actions.beginFetchRecord(altId))
+  try {
+    const response = yield call(getResourceOriole, altId)
+    yield put(actions.finishFetchRecord({ response, altId }))
+  } catch (error) {
+    yield put(actions.failFetch({ error, altId }))
+  }
 }
 
 //** Push to history in react router */
@@ -60,10 +80,13 @@ function* sagas() {
   // The other is for starting search by changing the browser location
   const forks = [
     fork(takeLatest, ORIOLE_SEARCH, search, searchOriole),
-    fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
+    //fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
     fork(takeEvery, ORIOLE_FETCH, search, searchOriole),
     fork(takeLatest, ORIOLE_SEARCH, history),
-    fork(takeLatest, ORIOLE_LIST, history)]
+    fork(takeLatest, ORIOLE_LIST, history),
+    fork(takeLatest, ORIOLE_FETCH_RECORD, fetchResource),
+    fork(takeLatest, LOCATION_CHANGE, fetchResource)
+  ]
   yield all(forks)
 }
 

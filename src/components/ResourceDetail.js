@@ -1,29 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as selectors from '../selectors/resource'
+import { fetchRecord } from '../actions'
 
-function mapStateToProps(state) {
-  const record = state
-  console.log(state)
+
+const mapStateToProps = (state) => {
+  console.log('mapStateToProps:', state)
+  return {
+    resource: selectors.getResource(state)
+  }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  handleFetch: (props) => {
+    const { resource } = props
+    if (typeof resource === 'undefined') { // If resource not in Store
+      dispatch(fetchRecord(props.match.params.altId))
+    }
+  }
+})
 
 class ResourceDetail extends Component {
 
   componentDidMount () {
-    const {altId} = this.props.match.params;
+    //this.props.handleFetch(this.props) // this is what passes the altId to the fetch action
   }
 
       render() {
+        console.log('this.props', this.props)
+        const record = this.props.resource
         return (
         <div className='item'>
-          FOOO
-{/*
           <span className='itemTitle'><a href={ "http://proxy.library.jhu.edu/login?url=" + record.url } target='_new'>{ record.title }</a></span><br />
           <span className='itemDescription'>{ record.description } </span>
-*/}
           <p></p>
         </div>
       )
     }
   }
 
-export default connect(mapStateToProps)(ResourceDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceDetail);
