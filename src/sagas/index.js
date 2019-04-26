@@ -23,16 +23,10 @@ function* search(apiCall, action) {
     if (pathname === '/List' && apiCall === searchOriole) {
       return
     }
-    if (pathname === '/AZList' && apiCall === searchOriole) {
-      return
-    }
     if (pathname === '/Search' && apiCall === listOriole) {
       return
     }
     if (pathname === '/List') {
-      isSearching = false
-    }
-    if (pathname === '/AZList') {
       isSearching = false
     }
   } else if (action.type === ORIOLE_SEARCH) {

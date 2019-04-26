@@ -14,12 +14,9 @@ import './index.css'
 import App from './components/App'
 import Search from './components/Search'
 import List from './components/List'
-import AZList from './components/AZList'
-import Subjects from './components/Subjects'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import ActiveFilters from './components/ActiveFilters'
-import SortButtons from './components/SortButtons'
+import ResourceDetail from './components/ResourceDetail'
 import * as serviceWorker from './serviceWorker'
 
 const history = createHistory()
@@ -35,15 +32,12 @@ ReactDOM.render(
     <ConnectedRouter history={ history }>
       <div>
         <Switch>
-          <Route path='/' component={ App }/>
           <Route path='/Search' component={ Search }/>
           <Route path='/List' component={ List }/>
-          <Route path='/AZList' component={ AZList }/>
-          <Route path='/Subjects' component={ Subjects }/>
           <Route path='/Header' component={ Header }/>
           <Route path='/Footer' component={ Footer }/>
-          <Route path='/ActiveFilters' component={ ActiveFilters }/>
-          <Route path='/SortButtons' component={ SortButtons }/>
+          <Route exact path={'/databases/database/:altId'} component={ ResourceDetail }/>
+          <Route path='/' component={ App }/>
         </Switch>
       </div>
     </ConnectedRouter>
