@@ -15,7 +15,7 @@ describe('ORIOLE search actions', () => {
     })
   })
 
-  describe('ORIOLE_FETCH_FINISH', () => {
+  describe('ORIOLE_FETCH_SUCCESS', () => {
     it('should create an action to finish a fetch', () => {
       let expectedAction = {
         type: actionTypes.ORIOLE_FETCH_SUCCESS,
@@ -25,7 +25,7 @@ describe('ORIOLE search actions', () => {
     })
   })
 
-  describe('ORIOLE_FETCH_FAIL', () => {
+  describe('ORIOLE_FETCH_ERROR', () => {
     it('should create an action and set action.error to true', () => {
       let error = new TypeError(value)
       let expectedAction = {
@@ -37,4 +37,23 @@ describe('ORIOLE search actions', () => {
     })
   })
   
+  describe('ORIOLE_FETCH_RECORD_BEGIN', () => {
+    it('should create an action to begin fetch', () => {
+      let expectedAction = {
+        type: actionTypes.ORIOLE_FETCH_RECORD_BEGIN,
+        payload: value
+      }
+      expect(actions.beginFetch(value)).toEqual(expectedAction)
+    })
+  })
+
+  describe('ORIOLE_FETCH_RECORD_SUCCESS', () => {
+    it('should create an action to finish a fetch', () => {
+      let expectedAction = {
+        type: actionTypes.ORIOLE_FETCH_RECORD_SUCCESS,
+        payload: value
+      }
+      expect(actions.finishFetch(value)).toEqual(expectedAction)
+    })
+  })
 })
