@@ -45,4 +45,4 @@ class ResourceDetail extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResourceDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ResourceDetail)
