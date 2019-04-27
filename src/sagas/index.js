@@ -49,22 +49,30 @@ function* search(apiCall, action) {
 }
 
 function* fetchResource(action) { // saga to fetch single resource based on altId
-  let altId
+  let altId, proxy = false
   if (action.type === LOCATION_CHANGE) {
     let { pathname } = action.payload.location
     if (pathname.startsWith('/databases/database')) {
       altId = pathname.split('/')[3]
+    } else if (pathname.startsWith('/databases/proxy')) {
+      altId = pathname.split('/')[3]
+      proxy = true
     } else {
-      return
+      return null
     }
   } else {
     altId = action.payload
   }
-
+ 
   yield put(actions.beginFetchRecord(altId))
   try {
     const response = yield call(getResourceOriole, altId)
-    yield put(actions.finishFetchRecord({ response, altId }))
+    if (proxy) {
+      let record = response.resources[0]
+      window.location = `http://proxy.library.jhu.edu/login?url=${ record.url }`
+    } else {
+      yield put(actions.finishFetchRecord({ response, altId }))
+    }     
   } catch (error) {
     yield put(actions.failFetch({ error, altId }))
   }

@@ -37,6 +37,7 @@ ReactDOM.render(
           <Route path='/Header' component={ Header }/>
           <Route path='/Footer' component={ Footer }/>
           <Route exact path={'/databases/database/:altId'} component={ ResourceDetail }/>
+          <Route exact path={'/databases/proxy/:altId'} />
           <Route path='/' component={ App }/>
         </Switch>
       </div>
