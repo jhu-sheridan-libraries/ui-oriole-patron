@@ -26,17 +26,23 @@ class ResourceDetail extends Component {
     //this.props.handleFetch(this.props) // this is what passes the altId to the fetch action
   }
 
-      render() {
-        console.log('this.props', this.props)
-        const record = this.props.resource
-        return (
+  render() {
+    const record = this.props.resource
+    if (typeof record !== 'undefined') {
+      return (
         <div className='item'>
-          <span className='itemTitle'><a href={ "http://proxy.library.jhu.edu/login?url=" + record.url } target='_new'>{ record.title }</a></span><br />
+          <span className='itemTitle'><a href={ "http://proxy.library.jhu.edu/login?url=" + record.url } target='_new'>{ record.title }</a></span><br /> 
           <span className='itemDescription'>{ record.description } </span>
           <p></p>
         </div>
+        )
+    } else {
+      return (
+        <div></div>
       )
     }
+
   }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResourceDetail);

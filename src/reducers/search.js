@@ -44,6 +44,7 @@ export const searchReducers = handleActions({
     ...state, error: payload, meta: { ...state.meta, isFetching: false }
   }),
   [actions.finishFetchRecord]: (state, { payload }) => {
+    console.log('finish fetch record', payload)
     return {...state, resource: payload.response.resources[0]} 
   }
 }, initialState)

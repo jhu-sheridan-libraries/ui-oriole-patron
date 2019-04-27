@@ -9,7 +9,6 @@ import * as selectors from '../selectors/search'
 
 // A saga to do the search
 function* search(apiCall, action) {
-  console.log(apiCall, action)
   let isSearching = true
   let searchParams = {}
   if (action.type === LOCATION_CHANGE  ) {
@@ -51,13 +50,16 @@ function* search(apiCall, action) {
 
 function* fetchResource(action) { // saga to fetch single resource based on altId
   let altId
-  if (action.type === LOCATION_CHANGE  ) {
+  if (action.type === LOCATION_CHANGE) {
     let { pathname } = action.payload.location
-    altId = pathname.split('/')[3]
+    if (pathname.startsWith('/databases/database')) {
+      altId = pathname.split('/')[3]
+    } else {
+      return
+    }
   } else {
     altId = action.payload
   }
-  console.log('altId', altId)
 
   yield put(actions.beginFetchRecord(altId))
   try {
@@ -80,7 +82,7 @@ function* sagas() {
   // The other is for starting search by changing the browser location
   const forks = [
     fork(takeLatest, ORIOLE_SEARCH, search, searchOriole),
-    //fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
+    fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
     fork(takeEvery, ORIOLE_FETCH, search, searchOriole),
     fork(takeLatest, ORIOLE_SEARCH, history),
     fork(takeLatest, ORIOLE_LIST, history),
