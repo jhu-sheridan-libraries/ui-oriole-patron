@@ -85,19 +85,15 @@ function* history({ payload: searchParams }) {
 }
 
 function* sagas() {
-  // Create a pair of forked sagas for each widget:
-  // One fork is for user inititiated search;
-  // The other is for starting search by changing the browser location
-  const forks = [
-    fork(takeLatest, ORIOLE_SEARCH, search, searchOriole),
-    fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
-    fork(takeEvery, ORIOLE_FETCH, search, searchOriole),
-    fork(takeLatest, ORIOLE_SEARCH, history),
-    fork(takeLatest, ORIOLE_LIST, history),
-    fork(takeLatest, ORIOLE_FETCH_RECORD, fetchResource),
-    fork(takeLatest, LOCATION_CHANGE, fetchResource)
-  ]
-  yield all(forks)
+  yield all([
+    takeLatest(ORIOLE_SEARCH, search, searchOriole),
+    takeLatest(LOCATION_CHANGE, search, searchOriole),
+    takeEvery(ORIOLE_FETCH, search, searchOriole),
+    takeLatest(ORIOLE_SEARCH, history),
+    takeLatest(ORIOLE_LIST, history),
+    takeLatest(ORIOLE_FETCH_RECORD, fetchResource),
+    takeLatest(LOCATION_CHANGE, fetchResource)
+  ])
 }
 
 export default sagas
