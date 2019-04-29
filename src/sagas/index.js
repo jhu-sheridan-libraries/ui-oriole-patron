@@ -1,4 +1,4 @@
-import { all, takeLatest, fork, call, put, select, takeEvery } from 'redux-saga/effects'
+import { all, takeLatest, call, put, select, takeEvery } from 'redux-saga/effects'
 import 'regenerator-runtime/runtime'
 import qs from 'query-string'
 import { push, LOCATION_CHANGE } from 'connected-react-router'
