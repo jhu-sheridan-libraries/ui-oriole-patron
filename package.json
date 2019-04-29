@@ -5,7 +5,7 @@
   "dependencies": {
     "bootstrap": "4.3.1",
     "connected-react-router": "6.4.0",
-    "history": "^4.7.2",
+    "history": "4.9.0",
     "query-string": "^6.2.0",
     "react": "16.8.6",
     "react-app-polyfill": "^0.1.3",
