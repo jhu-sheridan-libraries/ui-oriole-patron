@@ -1,11 +1,20 @@
 import React from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-const ResourceItem = ({ record, index }) => (
+const ResourceItem = ({ record, index, history }) => (
   <div className='item'>
-      <span className='itemTitle'><a href={ "http://proxy.library.jhu.edu/login?url=" + record.url } target='_new'>{ record.title }</a></span><br />
-      <span className='itemDescription'>{ record.description }</span>
+      <span className='itemTitle'><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a></span><br />
+      <span className='itemDescription'>{ record.description } 
+        <Link to={{pathname: "/databases/database/" + record.altId}} >[more...]</Link>
+      </span>
       <p></p>
   </div>
 )
 
-export default ResourceItem
+ResourceItem.propTypes = {
+  record: PropTypes.object.isRequired,
+  index: PropTypes.number,
+}
+
+export default withRouter(ResourceItem)

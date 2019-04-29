@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Provider } from 'react-redux'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
-import createHistory from 'history/createBrowserHistory'
-import { Route, Switch } from 'react-router'
+import { createBrowserHistory } from 'history'
+import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
@@ -12,17 +12,9 @@ import reducers from './reducers'
 import sagas from './sagas'
 import './index.css'
 import App from './components/App'
-import Search from './components/Search'
-import List from './components/List'
-import AZList from './components/AZList'
-import Subjects from './components/Subjects'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ActiveFilters from './components/ActiveFilters'
-import SortButtons from './components/SortButtons'
 import * as serviceWorker from './serviceWorker'
 
-const history = createHistory()
+const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
 const historyMiddleware = routerMiddleware(history)
 const middlewares = [ sagaMiddleware, historyMiddleware ]
@@ -33,19 +25,7 @@ sagaMiddleware.run(sagas)
 ReactDOM.render(
   <Provider store={ store }>
     <ConnectedRouter history={ history }>
-      <div>
-        <Switch>
-          <Route path='/' component={ App }/>
-          <Route path='/Search' component={ Search }/>
-          <Route path='/List' component={ List }/>
-          <Route path='/AZList' component={ AZList }/>
-          <Route path='/Subjects' component={ Subjects }/>
-          <Route path='/Header' component={ Header }/>
-          <Route path='/Footer' component={ Footer }/>
-          <Route path='/ActiveFilters' component={ ActiveFilters }/>
-          <Route path='/SortButtons' component={ SortButtons }/>
-        </Switch>
-      </div>
+      <App/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'))

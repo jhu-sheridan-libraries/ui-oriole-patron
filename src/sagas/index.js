@@ -1,15 +1,14 @@
-import { all, takeLatest, fork, call, put, select, takeEvery } from 'redux-saga/effects'
+import { all, takeLatest, call, put, select, takeEvery } from 'redux-saga/effects'
 import 'regenerator-runtime/runtime'
 import qs from 'query-string'
 import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
-import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_LIST } from '../actions/constants'
-import { searchOriole, listOriole } from '../apis/oriole'
+import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_LIST, ORIOLE_FETCH_RECORD } from '../actions/constants'
+import { searchOriole, listOriole, getResourceOriole } from '../apis/oriole'
 import * as selectors from '../selectors/search'
 
 // A saga to do the search
 function* search(apiCall, action) {
-  console.log(apiCall, action)
   let isSearching = true
   let searchParams = {}
   if (action.type === LOCATION_CHANGE  ) {
@@ -23,16 +22,10 @@ function* search(apiCall, action) {
     if (pathname === '/List' && apiCall === searchOriole) {
       return
     }
-    if (pathname === '/AZList' && apiCall === searchOriole) {
-      return
-    }
     if (pathname === '/Search' && apiCall === listOriole) {
       return
     }
     if (pathname === '/List') {
-      isSearching = false
-    }
-    if (pathname === '/AZList') {
       isSearching = false
     }
   } else if (action.type === ORIOLE_SEARCH) {
@@ -51,7 +44,38 @@ function* search(apiCall, action) {
     const response = yield call(apiCall, searchParams)
     yield put(actions.finishFetch({ response, searchParams }))
   } catch (error) {
-    yield put(actions.failFetch({ error, searchParams }))  }
+    yield put(actions.failFetch({ error, searchParams }))
+  }
+}
+
+function* fetchResource(action) { // saga to fetch single resource based on altId
+  let altId, proxy = false
+  if (action.type === LOCATION_CHANGE) {
+    let { pathname } = action.payload.location
+    if (pathname.startsWith('/databases/database')) {
+      altId = pathname.split('/')[3]
+    } else if (pathname.startsWith('/databases/proxy')) {
+      altId = pathname.split('/')[3]
+      proxy = true
+    } else {
+      return null
+    }
+  } else {
+    altId = action.payload
+  }
+ 
+  yield put(actions.beginFetchRecord(altId))
+  try {
+    const response = yield call(getResourceOriole, altId)
+    if (proxy) {
+      let record = response.resources[0]
+      window.location = `http://proxy.library.jhu.edu/login?url=${ record.url }`
+    } else {
+      yield put(actions.finishFetchRecord({ response, altId }))
+    }     
+  } catch (error) {
+    yield put(actions.failFetch({ error, altId }))
+  }
 }
 
 //** Push to history in react router */
@@ -61,16 +85,15 @@ function* history({ payload: searchParams }) {
 }
 
 function* sagas() {
-  // Create a pair of forked sagas for each widget:
-  // One fork is for user inititiated search;
-  // The other is for starting search by changing the browser location
-  const forks = [
-    fork(takeLatest, ORIOLE_SEARCH, search, searchOriole),
-    fork(takeLatest, LOCATION_CHANGE, search, searchOriole),
-    fork(takeEvery, ORIOLE_FETCH, search, searchOriole),
-    fork(takeLatest, ORIOLE_SEARCH, history),
-    fork(takeLatest, ORIOLE_LIST, history)]
-  yield all(forks)
+  yield all([
+    takeLatest(ORIOLE_SEARCH, search, searchOriole),
+    takeLatest(LOCATION_CHANGE, search, searchOriole),
+    takeEvery(ORIOLE_FETCH, search, searchOriole),
+    takeLatest(ORIOLE_SEARCH, history),
+    takeLatest(ORIOLE_LIST, history),
+    takeLatest(ORIOLE_FETCH_RECORD, fetchResource),
+    takeLatest(LOCATION_CHANGE, fetchResource)
+  ])
 }
 
 export default sagas

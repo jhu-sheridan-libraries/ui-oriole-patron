@@ -11,7 +11,8 @@ const initialState = Immutable({
     page: 0,      // current page. default 0
     pageSize: 20, // default page size
     isNewSearch: true
-  }
+  },
+  resource: undefined
 })
 
 export const searchReducers = handleActions({
@@ -24,7 +25,7 @@ export const searchReducers = handleActions({
     if (isNewSearch) { // new search, reset data and page
       data = { resources: [], totalRecords: 0 }
       page = 0
-    } else {  
+    } else {
       data = state.data
       page = state.meta.page + 1
     }
@@ -33,7 +34,7 @@ export const searchReducers = handleActions({
   [actions.finishFetch]: (state, { payload }) => {
     let data = state.data
     if (payload.searchParams.isNewSearch) {
-      data = payload.response 
+      data = payload.response
     } else {
       data.resources = [ ...data.resources, ...payload.response.resources ]  // concatenate the resources in data
     }
@@ -42,6 +43,10 @@ export const searchReducers = handleActions({
   [actions.failFetch]: (state, { payload }) => ({
     ...state, error: payload, meta: { ...state.meta, isFetching: false }
   }),
+  [actions.finishFetchRecord]: (state, { payload }) => {
+    console.log('finish fetch record', payload)
+    return {...state, resource: payload.response.resources[0]} 
+  }
 }, initialState)
 
 export default searchReducers
