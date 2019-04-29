@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { throttle } from 'throttle-debounce'
-import { Row, Button, Container, Input, InputGroup } from 'reactstrap'
+import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
 
