@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Provider } from 'react-redux'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -19,7 +19,7 @@ import Footer from './components/Footer'
 import ResourceDetail from './components/ResourceDetail'
 import * as serviceWorker from './serviceWorker'
 
-const history = createHistory()
+const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
 const historyMiddleware = routerMiddleware(history)
 const middlewares = [ sagaMiddleware, historyMiddleware ]
@@ -33,11 +33,11 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path='/Search' component={ Search }/>
-          <Route path='/List' component={ List }/>
+          <Route path='/List' component={ List } />
           <Route path='/Header' component={ Header }/>
           <Route path='/Footer' component={ Footer }/>
-          <Route exact path={'/databases/database/:altId'} component={ ResourceDetail }/>
           <Route exact path={'/databases/proxy/:altId'} />
+          <Route path={'/databases/database/:altId'} component={ ResourceDetail }/>
           <Route path='/' component={ App }/>
         </Switch>
       </div>
