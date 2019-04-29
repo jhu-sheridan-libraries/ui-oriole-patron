@@ -5,7 +5,6 @@ import { fetchRecord } from '../actions'
 
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps:', state)
   return {
     resource: selectors.getResource(state)
   }
