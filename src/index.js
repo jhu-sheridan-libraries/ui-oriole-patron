@@ -12,11 +12,6 @@ import reducers from './reducers'
 import sagas from './sagas'
 import './index.css'
 import App from './components/App'
-import Search from './components/Search'
-import List from './components/List'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ResourceDetail from './components/ResourceDetail'
 import * as serviceWorker from './serviceWorker'
 
 const history = createBrowserHistory()
@@ -30,17 +25,7 @@ sagaMiddleware.run(sagas)
 ReactDOM.render(
   <Provider store={ store }>
     <ConnectedRouter history={ history }>
-      <div>
-        <Switch>
-          <Route path='/Search' component={ Search }/>
-          <Route path='/List' component={ List } />
-          <Route path='/Header' component={ Header }/>
-          <Route path='/Footer' component={ Footer }/>
-          <Route exact path={'/databases/proxy/:altId'} />
-          <Route path={'/databases/database/:altId'} component={ ResourceDetail }/>
-          <Route path='/' component={ App }/>
-        </Switch>
-      </div>
+      <App/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'))
