@@ -19,7 +19,7 @@ const Header = () => {
         <Container className="jhu-second-nav col-12">
           <Row>
             <Col className="col-*">
-              <a href="https://catalyst.library.jhu.edu/info/libraries"><img alt="Johns Hopkins University Libraries" id="top-logo" src="./logo.png" /></a>
+              <a href="https://catalyst.library.jhu.edu/info/libraries"><img alt="Johns Hopkins University Libraries" id="top-logo" src="/logo.png" /></a>
             </Col>
             <Col className="col-*">
                 <a href="/" id="main-title">Databases</a>
