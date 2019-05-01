@@ -27,6 +27,8 @@ class ResourceDetail extends Component {
 
     if (typeof record !== 'undefined') {
 
+      document.title = "Johns Hopkins Libraries Databases: " + record.title
+
       let termsList = ""
       for (var i = 0; i < record.terms.length; i++) {
         termsList = termsList.concat(record.terms[i].subject.facet)
@@ -56,6 +58,7 @@ class ResourceDetail extends Component {
           <div className='item' itemscope itemtype="http://schema.org/DigitalDocument">
             <span className='itemTitle'><a href={ "http://proxy.library.jhu.edu/login?url=" + record.url } target='_new'><div itemprop="name">{ record.title }</div></a></span><p />
             <span className='itemDescription'><b>URL:</b> <div itemprop="url">{ "http://proxy.library.jhu.edu/login?url=" + record.url }</div></span><p />
+            <span className='itemDescription'><b>URL:</b> <div itemprop="url">{ window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/proxy/" + record.altId }</div></span><p />
             <span className='itemDescription'><b>Description:</b> <div itemprop="description">{ record.description }</div></span><p />
             <span className='itemDescription'><b>Creator:</b> <div itemprop="creator">{ record.creator }</div></span><p />
             <span className='itemDescription'><b>Publisher:</b> <div itemprop="publisher">{ record.publisher }</div></span><p />

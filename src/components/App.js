@@ -4,7 +4,7 @@ import './App.css';
 import Header from './Header'
 import Footer from './Footer'
 import Search from './Search'
-import List from './List'
+import AZList from './AZList'
 import ResourceDetail from './ResourceDetail'
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={ Search }/>
-          <Route path='/List' component={ List } />
+          <Route path='/AZList' component={ AZList } />
           <Route exact path={'/databases/proxy/:altId'} />
           <Route path={'/databases/database/:altId'} component={ ResourceDetail }/>
         </Switch>
