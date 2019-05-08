@@ -4,11 +4,15 @@ export const searchOriole = (searchParams) => {
   let query = searchParams.query
   let page = searchParams.page || 0
   let pageSize = searchParams.pageSize || 20
-  const params = {
+  let params = {
     query: `(keywords all ${ query }) OR ((title="*${ query }*" or description="*${ query }*")) sortby title`,
     offset: page * pageSize,
     limit: pageSize
   }
+  if (query.length < 5) {
+    params.query = `title="^${ query }*" sortby title`
+  }
+  console.log(params.query)
   const url = `${ process.env.REACT_APP_API_ROOT }/oriole/resources?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     if (query) {

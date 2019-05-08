@@ -22,6 +22,9 @@ function* search(apiCall, action) {
     if (pathname === '/List' && apiCall === searchOriole) {
       return
     }
+    if (pathname === '/AZList' && apiCall === searchOriole) {
+      return
+    }
     if (pathname === '/Search' && apiCall === listOriole) {
       return
     }
@@ -63,7 +66,7 @@ function* fetchResource(action) { // saga to fetch single resource based on altI
   } else {
     altId = action.payload
   }
- 
+
   yield put(actions.beginFetchRecord(altId))
   try {
     const response = yield call(getResourceOriole, altId)
@@ -72,7 +75,7 @@ function* fetchResource(action) { // saga to fetch single resource based on altI
       window.location = `http://proxy.library.jhu.edu/login?url=${ record.url }`
     } else {
       yield put(actions.finishFetchRecord({ response, altId }))
-    }     
+    }
   } catch (error) {
     yield put(actions.failFetch({ error, altId }))
   }

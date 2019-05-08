@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import qs from 'query-string'
 import { Container, Nav, NavLink, NavItem } from 'reactstrap'
+import { Link, withRouter } from 'react-router-dom'
 import { list } from '../actions'
 import ResourceList from './ResourceList'
 
@@ -39,32 +40,32 @@ class AZList extends Component {
       <div>
         <Container className="main-container">
           <Nav id="azlist">
-            <NavItem><NavLink href="/AZList?q=A">A</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=B">B</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=C">C</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=D">D</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=E">E</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=F">F</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=G">G</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=H">H</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=I">I</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=J">J</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=J">K</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=L">L</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=M">M</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=N">N</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=O">O</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=P">P</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=Q">Q</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=R">R</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=S">S</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=T">T</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=U">U</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=V">V</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=W">W</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=X">X</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=Y">Y</NavLink></NavItem>
-            <NavItem><NavLink href="/AZList?q=Z">Z</NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=A"}} >A</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=B"}} >B</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=C"}} >C</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=D"}} >D</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=E"}} >E</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=F"}} >F</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=G"}} >G</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=H"}} >H</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=I"}} >I</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=J"}} >J</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=J"}} >K</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=L"}} >L</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=M"}} >M</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=N"}} >N</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=O"}} >O</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=P"}} >P</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=Q"}} >Q</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=R"}} >R</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=S"}} >S</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=T"}} >T</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=U"}} >U</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=V"}} >V</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=W"}} >W</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=X"}} >X</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=Y"}} >Y</Link></NavLink></NavItem>
+            <NavItem><NavLink><Link to={{pathname: "/AZList?q=Z"}} >Z</Link></NavLink></NavItem>
           </Nav>
           <ResourceList />
         </Container>

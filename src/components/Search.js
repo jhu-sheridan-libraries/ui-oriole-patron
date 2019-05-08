@@ -67,7 +67,9 @@ class Search extends Component {
         <Container className="main-container">
             <InputGroup id="SearchBox">
               <Input placeholder="e.g. History Encyclopedia, or Business Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
+              {/*
               <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
+              */}
               </InputGroup>
           <ResourceList />
         </Container>
