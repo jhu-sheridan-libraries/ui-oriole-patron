@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 
 function returnTrimmedDescription(description) {
   let trimmedDescription = description.substr(0, 250)
-  trimmedDescription = trimmedDescription.substr(0, Math.min(trimmedDescription.length, trimmedDescription.lastIndexOf(" ")))
+    if (trimmedDescription.length === 250) {
+      trimmedDescription = trimmedDescription.substr(0, Math.min(trimmedDescription.length, trimmedDescription.lastIndexOf(" ")))
+    }
   return trimmedDescription
 }
 

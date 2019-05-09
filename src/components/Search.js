@@ -5,6 +5,7 @@ import { throttle } from 'throttle-debounce'
 import { Button, Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
+import AZList from './AZList'
 
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
@@ -65,6 +66,7 @@ class Search extends Component {
     return (
       <div>
         <Container className="main-container">
+            <AZList />
             <InputGroup id="SearchBox">
               <Input placeholder="e.g. History Encyclopedia, or Business Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
               {/*
