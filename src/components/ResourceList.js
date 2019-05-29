@@ -40,9 +40,11 @@ class ResourceList extends Component {
       let body = totalRecords > 0 ? items : ''
       return (
         <div id={ id } className='resource-list'>
-          { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Results</div> }
+          { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Databases</div> }
           <div className='resource-content'>{ totalRecords > 0 && <Columns gap={gap} queries={queries}>{ body }</Columns> }</div>
+{/*
           { isFetching && <div>Loading...</div> }
+*/}
           { !isFetching && <Waypoint onEnter={({ currentPosition }) => {
               currentPosition === Waypoint.inside && handleFetch(this.props)
             }}

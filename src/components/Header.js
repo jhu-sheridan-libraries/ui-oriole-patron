@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Collapse, Navbar, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
+import { Container, Navbar, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
 
 const Header = () => {
     return (
@@ -25,7 +25,7 @@ const Header = () => {
                 <a href="/" id="main-title">Databases</a>
             </Col>
             <Col className="col-sm-6" id="jhutext">
-Johns Hopkins libraries subscribe to over 1,000 online databases that provide access to journal articles, books, newspapers, audio and video recordings, dissertations, and many other types of online resources.
+Databases provide access to journal articles, newspapers, audio and video recordings, data sets, dissertations, and more.
             </Col>
           </Row>
         </Container>
@@ -33,6 +33,5 @@ Johns Hopkins libraries subscribe to over 1,000 online databases that provide ac
      </div>
    )
  }
-
 
  export default Header

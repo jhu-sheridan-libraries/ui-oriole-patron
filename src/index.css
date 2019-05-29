@@ -1,8 +1,12 @@
 
+@font-face{font-family:'Gentona';src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.ttf") format("truetype")};
+@font-face{font-family:'Titling';src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.ttf") format("truetype")};
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "gentona", "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Gentona", "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +32,7 @@ a.jhu-first-nav {
 
 a.jhu-first-nav:hover {
     color: LightYellow;
+    text-decoration: underline;
 }
 
 .jhu-second-nav {
@@ -36,8 +41,10 @@ a.jhu-first-nav:hover {
 }
 
 #main-title {
+  font-family: titling;
   font-size: 36px;
   vertical-align: top;
+  text-transform: uppercase;
 }
 
 .jhu-footer {
@@ -61,10 +68,6 @@ a.jhu-first-nav:hover {
   }
 }
 
-.itemDescription {
-  font-size: 11px;
-}
-
 @media screen and (max-width: 1000px) {
   #Subjects {
     display: none;
@@ -73,4 +76,18 @@ a.jhu-first-nav:hover {
 
 #SearchBox {
   padding-top: 20px;
+  font-family: gentona;
+}
+
+.count {
+  padding: 15px;
+}
+
+a.itemTitle:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.itemDescription .itemAccessRestrictions .itemMoreInfo {
+  font-size: 11px;
 }

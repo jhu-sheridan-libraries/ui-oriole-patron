@@ -9,7 +9,7 @@ export const searchOriole = (searchParams) => {
     offset: page * pageSize,
     limit: pageSize
   }
-  if (query.length < 5) {
+  if (query.length < 2) {
     params.query = `title="^${ query }*" sortby title`
   }
   console.log(params.query)
