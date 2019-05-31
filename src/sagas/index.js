@@ -3,8 +3,8 @@ import 'regenerator-runtime/runtime'
 import qs from 'query-string'
 import { push, LOCATION_CHANGE } from 'connected-react-router'
 import * as actions from '../actions'
-import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_LIST, ORIOLE_FETCH_RECORD } from '../actions/constants'
-import { searchOriole, listOriole, getResourceOriole } from '../apis/oriole'
+import { ORIOLE_SEARCH, ORIOLE_FETCH, ORIOLE_FETCH_RECORD } from '../actions/constants'
+import { searchOriole, getResourceOriole } from '../apis/oriole'
 import * as selectors from '../selectors/search'
 
 // A saga to do the search
@@ -19,17 +19,8 @@ function* search(apiCall, action) {
     } else {
       searchParams = { query: '', isNewSearch: true }
     }
-    if (pathname === '/List' && apiCall === searchOriole) {
-      return
-    }
     if (pathname === '/AZList' && apiCall === searchOriole) {
       return
-    }
-    if (pathname === '/Search' && apiCall === listOriole) {
-      return
-    }
-    if (pathname === '/List') {
-      isSearching = false
     }
   } else if (action.type === ORIOLE_SEARCH) {
     searchParams = { ...action.payload, isNewSearch: true }
@@ -93,7 +84,6 @@ function* sagas() {
     takeLatest(LOCATION_CHANGE, search, searchOriole),
     takeEvery(ORIOLE_FETCH, search, searchOriole),
     takeLatest(ORIOLE_SEARCH, history),
-    takeLatest(ORIOLE_LIST, history),
     takeLatest(ORIOLE_FETCH_RECORD, fetchResource),
     takeLatest(LOCATION_CHANGE, fetchResource)
   ])

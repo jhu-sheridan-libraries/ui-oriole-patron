@@ -10,19 +10,25 @@ function returnTrimmedDescription(description) {
   return trimmedDescription
 }
 
-function returnAccessRestrictions(accessRestrictions) {
-  let thisAccessRestrictions = ""
-  if (accessRestrictions.length > 0) {
-    thisAccessRestrictions = "Access Restrictions: " + accessRestrictions.join("; ")
+function returnAccessRestrictions(accessRestrictionsArray) {
+  let htmlAccessRestrictions = ""
+  if (accessRestrictionsArray.length > 0) {
+    let accessRestrictionsList = []
+    for (var i = 0; i < accessRestrictionsArray.length; i++) {
+      accessRestrictionsList.push(accessRestrictionsArray[i].content)
+    }
+    accessRestrictionsList = accessRestrictionsList.join("<br />")
+    htmlAccessRestrictions = `<b>Note:</b> ` + accessRestrictionsList + `<br />`
+    return {__html: htmlAccessRestrictions}
   }
-  return thisAccessRestrictions
+  return null
 }
 
 const ResourceItem = ({ record, index, history }) => (
   <div className='item'>
-      <span className='itemTitle'><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a><br /></span>
-      <span className='itemDescription'>{ returnTrimmedDescription(record.description) }...<br /></span>
-      <span className='itemAccessRestrictions'>{ returnAccessRestrictions(record.accessRestrictions) }<br /></span>
+      <span className='itemTitle'><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a></span><br />
+      <span className='itemDescription'>{ returnTrimmedDescription(record.description) }...</span><br />
+      <span className='itemAccessRestrictions' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
       <span className='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info</Link></span>
 
       <p></p>

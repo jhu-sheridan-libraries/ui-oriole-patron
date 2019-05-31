@@ -36,15 +36,8 @@ export const searchOriole = (searchParams) => {
   })
 }
 
-export const listOriole = (listParams) => {
-  let query = listParams.query
-  let page = listParams.page || 0
-  let pageSize = listParams.pageSize || 20
-  const params = {
-    query: `(title="${ query }*") sortby title`,
-    offset: page * pageSize,
-    limit: pageSize
-  }
+export const getResourceOriole = (altId) => { // retrieve single record by altId
+  const params = {query:`altId==${altId}`}
   const url = `${ process.env.REACT_APP_API_ROOT }/oriole/resources?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
       return fetch(url, {
@@ -64,9 +57,8 @@ export const listOriole = (listParams) => {
   })
 }
 
-export const getResourceOriole = (altId) => { // retrieve single record by altId
-  const params = {query:`altId==${altId}`}
-  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/resources?${ qs.stringify(params) }`
+export const getTags = () => { // retrieve all Tags
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/tags`
   return new Promise((resolve, reject) => {
       return fetch(url, {
         headers: {

@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions'
 import * as actionTypes from './constants'
 // defines action creators for the oriole app.
 export const search = createAction(actionTypes.ORIOLE_SEARCH)
-export const list = createAction(actionTypes.ORIOLE_LIST)
 export const fetch = createAction(actionTypes.ORIOLE_FETCH)
 export const beginFetch = createAction(actionTypes.ORIOLE_FETCH_BEGIN)
 export const finishFetch = createAction(actionTypes.ORIOLE_FETCH_SUCCESS)

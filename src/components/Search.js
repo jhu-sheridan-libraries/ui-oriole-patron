@@ -66,11 +66,12 @@ class Search extends Component {
       <div>
         <Container className="main-container">
             <InputGroup id="SearchBox">
-              <Input placeholder="e.g. History Encyclopedia, or Business Statistics, or just Philosophy" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
+              <Input placeholder="e.g., type 'P' to browse databases beginning with P, start typing a database name, or enter a keyword" name="q" id="q" autoComplete="off" autoFocus="autofocus" onKeyPress={ this.handleSearchBoxKeyPress } onChange={ this.handleChange } value={ this.state.searchTerm } />
               {/*
               <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
               */}
               </InputGroup>
+              <div id="jhutext">Databases provide access to journal articles, newspapers, audio and video recordings, data sets, dissertations, and more.</div>
           <ResourceList />
         </Container>
       </div>

@@ -46,11 +46,6 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       loader: require.resolve('css-loader'),
       options: cssOptions,
     },
-    //File loader used to load fonts
-    {
-      test: /\.(woff|woff2|eot|ttf|otf)$/,
-      use: ['file-loader']
-    },
     {
       // Options for PostCSS as we reference these options twice
       // Adds vendor prefixing based on your specified browser support in

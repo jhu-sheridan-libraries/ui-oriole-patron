@@ -1,14 +1,12 @@
+@font-face{font-family:'Titling';src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.ttf") format("truetype")};
 
 @font-face{font-family:'Gentona';src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.ttf") format("truetype")};
-@font-face{font-family:'Titling';src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.ttf") format("truetype")};
 
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Gentona", "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Gentona", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,27 +29,47 @@ a.jhu-first-nav {
 }
 
 a.jhu-first-nav:hover {
-    color: LightYellow;
     text-decoration: underline;
 }
 
 .jhu-second-nav {
-  vertical-align: top;
-  margin-bottom: 25px;
-}
-
-#main-title {
-  font-family: titling;
-  font-size: 36px;
-  vertical-align: top;
-  text-transform: uppercase;
-}
-
-.jhu-footer {
   margin-top: 25px;
 }
 
+.jhu-second-nav, .jhu-footer {
+  vertical-align: bottom;
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #002D72;
+  text-align: left;
+}
+
+a.jhu-second-nav, a.jhu-footer-link, a.itemTitle {
+    color: #002D72;
+}
+
+a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
+    text-decoration: underline;
+}
+
+.jhu-second-nav-links {
+  vertical-align: top;
+}
+
+#main-title {
+  font-family: "Titling", sans-serif;
+  font-size: 45px;
+  vertical-align: top;
+  text-transform: uppercase;
+  color: #002D72;
+}
+
+a#main-title {
+  color: #002D72;
+}
+
 .jhu-footer, #azlist {
+  margin-top: 25px;
   background-color: #f8f8f8;
   border-color: #e7e7e7;
   width: 100%;
@@ -59,35 +77,38 @@ a.jhu-first-nav:hover {
 }
 
 #top-logo {
-  margin-top: 10px;
+  margin-left: 50px;
+  width: 325px;
+}
+
+#footer-logo {
+  width: 250px;
+  margin-left: 50px;
 }
 
 @media screen and (max-width: 1050px) {
-  .jhu-first-nav, #jhutext {
+  .jhu-first-nav, .jhu-second-nav-links {
     display: none;
   }
-}
-
-@media screen and (max-width: 1000px) {
-  #Subjects {
-    display: none;
+  #top-logo, #footer-logo {
+    margin-left: 0px;
   }
 }
 
 #SearchBox {
-  padding-top: 20px;
-  font-family: gentona;
+  font-family: "Gentona", sans-serif;
+  margin-bottom: 15px;
 }
 
 .count {
-  padding: 15px;
-}
-
-a.itemTitle:hover {
-    color: #333;
-    text-decoration: underline;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .itemDescription .itemAccessRestrictions .itemMoreInfo {
   font-size: 11px;
+}
+
+.itemTitle {
+  color: #333;
 }

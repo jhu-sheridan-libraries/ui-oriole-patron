@@ -6,9 +6,9 @@ const Footer = () => {
       <Container className="jhu-footer col-12">
         <Nav>
           <Navbar>
-            <NavItem><NavLink href="https://catalyst.library.jhu.edu/info/libraries"><img className="footer-logo" src="/logo.png" alt="" width="66%" /></NavLink></NavItem>
-            <NavItem><NavLink href="mailto:ask@jhu.libanswers.com?Subject=Johns%20Hopkins%20Libraries%20Database%20List%20Feedback">Feedback</NavLink></NavItem>
-            <NavItem><NavLink href="/">Credits</NavLink></NavItem>
+            <NavItem><NavLink className="jhu-footer-link" href="https://catalyst.library.jhu.edu/info/libraries"><img id="footer-logo" src="/logo.png" alt="" /></NavLink></NavItem>
+            <NavItem><NavLink className="jhu-footer-link" href="mailto:ask@jhu.libanswers.com?Subject=Johns%20Hopkins%20Libraries%20Database%20List%20Feedback">Feedback</NavLink></NavItem>
+            <NavItem><NavLink className="jhu-footer-link" href="/">Credits</NavLink></NavItem>
           </Navbar>
         </Nav>
       </Container>
