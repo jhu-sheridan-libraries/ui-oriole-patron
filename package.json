@@ -6,6 +6,7 @@
     "bootstrap": "4.3.1",
     "connected-react-router": "6.4.0",
     "history": "4.9.0",
+    "oriole-widgets": "jhu-sheridan-libraries/oriole-widgets",
     "query-string": "^6.2.0",
     "react": "16.8.6",
     "react-app-polyfill": "^0.1.3",
