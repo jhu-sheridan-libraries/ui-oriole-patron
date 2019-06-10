@@ -1,7 +1,51 @@
-@font-face{font-family:'Titling';src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.ttf") format("truetype")};
+@font-face{
+  font-family:'Titling';
+  src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot");
+  src:url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.eot?#iefix") format("embedded-opentype"),
+    url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.woff") format("woff"),
+    url("//bespoke.mse.jhu.edu/webfonts/Titling-Gothic-Medium.ttf") format("truetype");
+  font-display: swap;
+}
 
-@font-face{font-family:'Gentona';src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot");src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot?#iefix") format("embedded-opentype"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.woff") format("woff"),url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.ttf") format("truetype")};
+@font-face{
+  font-family:'Gentona';
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot");
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.eot?#iefix") format("embedded-opentype"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.woff") format("woff"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Book.ttf") format("truetype");
+  font-display: swap;
+}
 
+@font-face{
+  font-family:'Gentona-Bold';
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Bold.eot");
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Bold.eot?#iefix") format("embedded-opentype"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Bold.woff") format("woff"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Bold.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face{
+  font-family:'Gentona-Medium';
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Medium.eot");
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-Medium.eot?#iefix") format("embedded-opentype"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Medium.woff") format("woff"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-Medium.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face{
+  font-family:'Gentona-Italic';
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-BookItalic.eot");
+  src:url("//bespoke.mse.jhu.edu/webfonts/Gentona-BookItalic.eot?#iefix") format("embedded-opentype"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-BookItalic.woff") format("woff"),
+    url("//bespoke.mse.jhu.edu/webfonts/Gentona-BookItalic.ttf") format("truetype");
+  font-display: swap;
+}
+
+*, ::after, ::before {
+    box-sizing: content-box;
+}
 
 body {
   margin: 0;
@@ -17,8 +61,9 @@ code {
 }
 
 .jhu-first-nav {
+    font-family: "Gentona", sans-serif;
     background-color: #002D72;
-    font-size: 18px;
+    font-size: 15px;
     color: white;
     text-align: left;
     width: 100%;
@@ -34,12 +79,13 @@ a.jhu-first-nav:hover {
 
 .jhu-second-nav {
   margin-top: 25px;
+  font-family: "Gentona-Bold", sans-serif;
 }
 
 .jhu-second-nav, .jhu-footer {
   vertical-align: bottom;
   margin-bottom: 5px;
-  font-size: 18px;
+  font-size: 15px;
   color: #002D72;
   text-align: left;
 }
@@ -56,9 +102,13 @@ a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
   vertical-align: top;
 }
 
+.nav {
+  flex-wrap: nowrap;
+}
+
 #main-title {
   font-family: "Titling", sans-serif;
-  font-size: 45px;
+  font-size: 31px;
   vertical-align: top;
   text-transform: uppercase;
   color: #002D72;
@@ -77,27 +127,24 @@ a#main-title {
 }
 
 #top-logo {
-  margin-left: 50px;
   width: 325px;
 }
 
 #footer-logo {
   width: 250px;
-  margin-left: 50px;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 1050px) {
   .jhu-first-nav, .jhu-second-nav-links {
     display: none;
   }
-  #top-logo, #footer-logo {
-    margin-left: 0px;
-  }
 }
 
 #SearchBox {
   font-family: "Gentona", sans-serif;
   margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
 .count {
@@ -111,4 +158,8 @@ a#main-title {
 
 .itemTitle {
   color: #333;
+}
+
+#jhutext {
+  font-family: "Gentona-Italic", sans-serif;
 }
