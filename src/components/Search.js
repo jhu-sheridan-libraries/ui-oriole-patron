@@ -5,6 +5,7 @@ import { throttle } from 'throttle-debounce'
 import { Container, Input, InputGroup } from 'reactstrap'
 import { search } from '../actions'
 import ResourceList from './ResourceList'
+import TagList from "./TagList";
 
 const mapStateToProps = (state, ownProps) => {
   let searchTerm = ''
@@ -72,7 +73,9 @@ class Search extends Component {
               */}
               </InputGroup>
               <div id="jhutext">Databases provide access to journal articles, newspapers, audio and video recordings, data sets, dissertations, and more.</div>
-          <ResourceList />
+          {
+            this.props.searchTerm ? <ResourceList/> : <TagList api={process.env.REACT_APP_API_ROOT + '/oriole/tags'} />
+          }
         </Container>
       </div>
     )
