@@ -55,6 +55,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:link, a:visited {
+  color: #002D72
+}
+
+h2 {
+  font-size: 20px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -90,10 +98,6 @@ a.jhu-first-nav:hover {
   text-align: left;
 }
 
-a.jhu-second-nav, a.jhu-footer-link, a.itemTitle {
-    color: #002D72;
-}
-
 a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
     text-decoration: underline;
 }
@@ -106,15 +110,11 @@ a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
   flex-wrap: nowrap;
 }
 
-#main-title {
+h1, #main-title, #tagDetailTitle {
   font-family: "Titling", sans-serif;
   font-size: 31px;
   vertical-align: top;
   text-transform: uppercase;
-  color: #002D72;
-}
-
-a#main-title {
   color: #002D72;
 }
 
@@ -156,10 +156,14 @@ a#main-title {
   font-size: 11px;
 }
 
-.itemTitle {
-  color: #333;
+span.itemTitle {
+  font-family: "Gentona", sans-serif;
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 #jhutext {
   font-family: "Gentona-Italic", sans-serif;
+  margin-bottom: 15px;
 }

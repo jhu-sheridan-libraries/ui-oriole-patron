@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Columns from 'react-columns'
+import { Link } from 'react-router-dom'
 
 class TagList extends React.Component {
   constructor(props) {
@@ -38,14 +40,24 @@ class TagList extends React.Component {
   }
 
   render() {
+    let queries = [{
+      columns: 2,
+      query: 'min-width: 500px'
+    }, {
+      columns: 3,
+      query: 'min-width: 1000px',
+    }]
+    let gap = "15px"
     const subjects = Array.from(this.state.subjects);
     const blocks = subjects.map(subject => {
-      return (<div key={subject}>{subject}</div>);
+      return (<h2><div key={subject}><Link to={{pathname: "/TagDetail?q=" + encodeURI(subject)}} >{subject}</Link></div></h2>);
     });
     return (
-      <Fragment>
-        {blocks}
-      </Fragment>
+      <div className='resource-content'>
+        <Fragment>
+            <Columns gap={gap} queries={queries}>{blocks}</Columns>
+        </Fragment>
+      </div>
     );
   }
 }
@@ -55,5 +67,3 @@ TagList.propTypes = {
 }
 
 export default TagList
-
-

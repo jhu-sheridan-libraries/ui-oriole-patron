@@ -27,7 +27,7 @@ const Header = () => {
               <a href="https://catalyst.library.jhu.edu/info/libraries"><img alt="Johns Hopkins University Libraries" id="top-logo" src="/logo2.png" /></a>
             </Col>
             <Col className="col-lg-auto col-md-auto col-sm-* col-xs-*">
-              <a href="/" id="main-title">Databases</a>
+              <h1><a href="/" id="main-title">Databases</a></h1>
             </Col>
             <Col className="col-lg-6 col-md-6">
               <Navbar className="jhu-second-nav-links">

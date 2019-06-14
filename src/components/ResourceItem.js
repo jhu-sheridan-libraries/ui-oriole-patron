@@ -25,11 +25,11 @@ function returnAccessRestrictions(accessRestrictionsArray) {
 }
 
 const ResourceItem = ({ record, index, history }) => (
-  <div className='item'>
-      <span className='itemTitle'><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a></span><br />
-      <span className='itemDescription'>{ returnTrimmedDescription(record.description) }...</span><br />
-      <span className='itemAccessRestrictions' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
-      <span className='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info</Link></span>
+  <div class='item'>
+      <h2 class="itemTitle"><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a></h2>
+      <span class='itemDescription'>{ returnTrimmedDescription(record.description) }...</span><br />
+      <span class='itemAccessRestrictions' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
+      <span class='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info</Link></span>
 
       <p></p>
   </div>
