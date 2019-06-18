@@ -55,21 +55,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:link, a:visited {
-  color: #002D72
+h1, #main-title, #tagDetailTitle {
+  font-family: "Titling", sans-serif;
+  font-size: 31px;
+  vertical-align: top;
+  text-transform: uppercase;
+  color: #002D72;
 }
 
 h2 {
   font-size: 20px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+a:link, a:visited {
+  color: #002D72
+}
+
+#top-logo {
+  width: 325px;
+}
+
+.nav {
+  flex-wrap: nowrap;
 }
 
 .jhu-first-nav {
-    font-family: "Gentona", sans-serif;
+    font-family: "Gentona-Medium", sans-serif;
     background-color: #002D72;
     font-size: 15px;
     color: white;
@@ -106,17 +117,6 @@ a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
   vertical-align: top;
 }
 
-.nav {
-  flex-wrap: nowrap;
-}
-
-h1, #main-title, #tagDetailTitle {
-  font-family: "Titling", sans-serif;
-  font-size: 31px;
-  vertical-align: top;
-  text-transform: uppercase;
-  color: #002D72;
-}
 
 .jhu-footer, #azlist {
   margin-top: 25px;
@@ -126,25 +126,14 @@ h1, #main-title, #tagDetailTitle {
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
 
-#top-logo {
-  width: 325px;
-}
-
 #footer-logo {
   width: 250px;
   background-color: transparent;
 }
 
-@media screen and (max-width: 1050px) {
-  .jhu-first-nav, .jhu-second-nav-links {
-    display: none;
-  }
-}
-
-#SearchBox {
-  font-family: "Gentona", sans-serif;
+#jhutext {
+  font-family: "Gentona-Italic", sans-serif;
   margin-bottom: 15px;
-  box-sizing: border-box;
 }
 
 .count {
@@ -152,8 +141,10 @@ h1, #main-title, #tagDetailTitle {
   margin-bottom: 15px;
 }
 
-.itemDescription .itemAccessRestrictions .itemMoreInfo {
-  font-size: 11px;
+#SearchBox {
+  font-family: "Gentona", sans-serif;
+  margin-bottom: 15px;
+  box-sizing: border-box;
 }
 
 span.itemTitle {
@@ -163,7 +154,12 @@ span.itemTitle {
   padding-bottom: 0px;
 }
 
-#jhutext {
-  font-family: "Gentona-Italic", sans-serif;
-  margin-bottom: 15px;
+.itemDescription .itemAccessRestrictions .itemMoreInfo {
+  font-size: 11px;
+}
+
+@media screen and (max-width: 1050px) {
+  .jhu-first-nav, .jhu-second-nav-links {
+    display: none;
+  }
 }

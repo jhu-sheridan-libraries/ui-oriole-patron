@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Container } from 'reactstrap'
 import queryString from 'query-string'
+import _ from 'lodash'
 
 let qs = queryString.parse(window.location.search)
 let queryParam = qs.q
+let queryParamWithDashes = queryParam + " -- "
 
 
 class TagDetail extends Component {
@@ -16,16 +17,38 @@ class TagDetail extends Component {
   }
 
   processRecords(recordset) {
-    const records = new Set();
-    recordset.forEach(title => {
-      records.add(title);
+    // create an array of wanted tags
+    let tagsToKeep = []
+    // create array of unwanted tags
+    let tagsToRemove = []
+    _.forEach(recordset, function(thisRecord) {
+      _.forEach(thisRecord.tags.tagList, function(thisTagListItem) {
+        if (!_.startsWith(thisTagListItem, queryParamWithDashes)) {
+          tagsToRemove.push(thisTagListItem)
+        } else {
+          tagsToKeep.push(thisTagListItem)
+        }
+      });
     });
-    return Array.from(records);
-    console.log(records)
+    tagsToKeep = _.uniq(tagsToKeep);
+    tagsToKeep = _.sortBy(tagsToKeep)
+    tagsToRemove = _.uniq(tagsToRemove)
+    // filter out unwanted tags from recordset tagLists
+    _.forEach(recordset, function(thisRecord) {
+      _.pullAll(thisRecord.tags.tagList, tagsToRemove)
+    });
+    // sort recordset by Title
+    recordset = _.sortBy(recordset, ['title']);
+    // groupBy tag.tagList
+    recordset = _.groupBy(recordset, function(i) {
+      return i.tags.tagList;
+    });
+    console.log(recordset)
+    return recordset;
   }
 
   componentDidMount() {
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents' + queryParam + '--'
+    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + queryParamWithDashes + "&limit=1000"
     api = encodeURI(api)
     fetch(api, {
       headers: {
@@ -41,7 +64,7 @@ class TagDetail extends Component {
       })
       .then(d => d.json())
       .then(d => {
-        this.setState({ records: this.processRecords(d.recordset) });
+        this.setState({ records: this.processRecords(d.resources) });
       })
   }
 

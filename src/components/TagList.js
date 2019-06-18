@@ -54,6 +54,7 @@ class TagList extends React.Component {
     });
     return (
       <div className='resource-content'>
+      <div class="jhutext">Browse recommended databases by subject:</div><br />
         <Fragment>
             <Columns gap={gap} queries={queries}>{blocks}</Columns>
         </Fragment>
