@@ -6,17 +6,23 @@ import { Link } from 'react-router-dom'
 class TagList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { subjects: [] };
+    this.state = { subjects: {} };
     this.getSubjects.bind(this);
   }
 
   getSubjects(tags) {
-    const subjects = new Set();
+    const subjects = {}
     tags.forEach(tag => {
-      const tokens = tag.split("--");
-      subjects.add(tokens[0].trim());
-    });
-    return Array.from(subjects);
+      const tokens = tag.split("--")
+      const first = tokens[0].trim()
+      if (!(first in subjects)) {
+        subjects[first] = []
+      }
+      if (tokens.length > 1) {
+        subjects[first].push(tokens[1].trim())
+      }
+    })
+    return subjects
   }
 
   componentDidMount() {
@@ -35,7 +41,7 @@ class TagList extends React.Component {
       })
       .then(d => d.json())
       .then(d => {
-        this.setState({ subjects: this.getSubjects(d.tags) });
+        this.setState({ subjects: this.getSubjects(d.tags) })
       })
   }
 
@@ -48,9 +54,16 @@ class TagList extends React.Component {
       query: 'min-width: 1000px',
     }]
     let gap = "15px"
-    const subjects = Array.from(this.state.subjects);
+    const subjects = Object.keys(this.state.subjects).sort()
     const blocks = subjects.map(subject => {
-      return (<h2><div key={subject}><Link to={{pathname: "/TagDetail?q=" + encodeURI(subject)}} >{subject}</Link></div></h2>);
+      return (<h2><div key={subject}>
+        <Link to={{
+          pathname: "/TagDetail/" + encodeURI(subject),
+          state: {
+            children: this.state.subjects[subject]
+          }
+        }} >{subject}</Link>
+      </div></h2>);
     });
     return (
       <div className='resource-content'>

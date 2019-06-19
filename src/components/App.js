@@ -16,7 +16,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Search }/>
           <Route path='/AZList' component={ AZList } />
-          <Route path='/TagDetail' component={ TagDetail } />
+          <Route path='/TagDetail/:queryParam' component={ TagDetail } />
           <Route exact path={'/databases/proxy/:altId'} />
           <Route path={'/databases/database/:altId'} component={ ResourceDetail }/>
         </Switch>

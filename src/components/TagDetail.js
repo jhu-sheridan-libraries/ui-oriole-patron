@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
-import queryString from 'query-string'
 import _ from 'lodash'
-
-let qs = queryString.parse(window.location.search)
-let queryParam = qs.q
-let queryParamWithDashes = queryParam + " -- "
-
 
 class TagDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { records: [] };
-    this.processRecords.bind(this);
+    this.state = {
+      records: [],
+      subject: props.match.params.queryParam,
+      children: props.location.state.children
+    };
   }
 
   processRecords(recordset) {
@@ -23,7 +20,7 @@ class TagDetail extends Component {
     let tagsToRemove = []
     _.forEach(recordset, function(thisRecord) {
       _.forEach(thisRecord.tags.tagList, function(thisTagListItem) {
-        if (!_.startsWith(thisTagListItem, queryParamWithDashes)) {
+        if (!_.startsWith(thisTagListItem, this.state.queryParamWithDashes)) {
           tagsToRemove.push(thisTagListItem)
         } else {
           tagsToKeep.push(thisTagListItem)
@@ -48,7 +45,7 @@ class TagDetail extends Component {
   }
 
   componentDidMount() {
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + queryParamWithDashes + "&limit=1000"
+    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.queryParamWithDashes + "&limit=1000"
     api = encodeURI(api)
     fetch(api, {
       headers: {
@@ -64,7 +61,7 @@ class TagDetail extends Component {
       })
       .then(d => d.json())
       .then(d => {
-        this.setState({ records: this.processRecords(d.resources) });
+        this.setState({ records: d.resources });
       })
   }
 
@@ -72,7 +69,7 @@ class TagDetail extends Component {
     return (
       <div>
         <Container className="main-container">
-            <div id="tagDetailTitle"><h1>{queryParam}</h1></div>
+            <div id="tagDetailTitle"><h1>{this.state.subject}</h1></div>
         </Container>
       </div>
     );
