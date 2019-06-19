@@ -2,47 +2,18 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Columns from 'react-columns'
 import { Link } from 'react-router-dom'
+import { getTags } from '../apis/oriole'
 
 class TagList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { subjects: {} };
-    this.getSubjects.bind(this);
-  }
-
-  getSubjects(tags) {
-    const subjects = {}
-    tags.forEach(tag => {
-      const tokens = tag.split("--")
-      const first = tokens[0].trim()
-      if (!(first in subjects)) {
-        subjects[first] = []
-      }
-      if (tokens.length > 1) {
-        subjects[first].push(tokens[1].trim())
-      }
-    })
-    return subjects
+    this.state = { tags: {} };
   }
 
   componentDidMount() {
-    let { api } = this.props;
-    fetch(api, {
-      headers: {
-        'X-Okapi-Tenant': 'diku',
-        'Content-Type': 'application/json'
-      }
+    getTags().then(tags => {
+      this.setState({ tags })
     })
-      .then(response => {
-        if (!response.ok) {
-          throw Error('Network request failed')
-        }
-        return response
-      })
-      .then(d => d.json())
-      .then(d => {
-        this.setState({ subjects: this.getSubjects(d.tags) })
-      })
   }
 
   render() {
@@ -54,15 +25,15 @@ class TagList extends React.Component {
       query: 'min-width: 1000px',
     }]
     let gap = "15px"
-    const subjects = Object.keys(this.state.subjects).sort()
-    const blocks = subjects.map(subject => {
-      return (<h2><div key={subject}>
+    const mainTags = Object.keys(this.state.tags).sort()
+    const blocks = mainTags.map(tag => {
+      return (<h2><div key={tag}>
         <Link to={{
-          pathname: "/TagDetail/" + encodeURI(subject),
+          pathname: "/TagDetail/" + encodeURI(tag),
           state: {
-            children: this.state.subjects[subject]
+            children: this.state.tags[tag]
           }
-        }} >{subject}</Link>
+        }} >{tag}</Link>
       </div></h2>);
     });
     return (

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import _ from 'lodash'
+import { getTags } from '../apis/oriole'
+import {Link} from "react-router-dom"
 
 class TagDetail extends Component {
 
@@ -8,9 +10,12 @@ class TagDetail extends Component {
     super(props);
     this.state = {
       records: [],
-      subject: props.match.params.queryParam,
-      children: props.location.state.children
-    };
+      tag: props.match.params.queryParam,
+    }
+    const { state } = props.location
+    if (state) {
+      this.state['children'] = state.children
+    }
   }
 
   processRecords(recordset) {
@@ -45,6 +50,11 @@ class TagDetail extends Component {
   }
 
   componentDidMount() {
+    if (!this.state.children) {
+      getTags().then(tags => {
+        this.setState({children: tags[this.state.tag], ...this.state})
+      })
+    }
     let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.queryParamWithDashes + "&limit=1000"
     api = encodeURI(api)
     fetch(api, {
@@ -66,10 +76,22 @@ class TagDetail extends Component {
   }
 
   render() {
+    let blocks;
+    if (this.state.children) {
+      blocks = this.state.children.map(child => {
+        return (<h4><div key={child}>
+          {child}
+        </div></h4>);
+      });
+    } else {
+      blocks = ''
+    }
+
     return (
       <div>
         <Container className="main-container">
-            <div id="tagDetailTitle"><h1>{this.state.subject}</h1></div>
+            <div id="tagDetailTitle"><h1>{this.state.tag}</h1></div>
+          {blocks}
         </Container>
       </div>
     );
