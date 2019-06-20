@@ -101,14 +101,23 @@ class TagDetail extends Component {
     let blocks;
     if (this.state.children) {
       blocks = this.state.children.map(child => {
-        //let childTitle = this.state.records["Background"][0].["title"]
-        //let childTitles = this.state.records[child].map(record => <li>record.title</li>)
+        let childTitles;
+        if (this.state.records && child in this.state.records) {
+          childTitles = this.state.records[child].map(record => <li>{record.title}</li>)
+        } else {
+          childTitles = ''
+        }
         return (
-          <h4><div key={child}>
-          {child}
-          </div></h4>
+          <div>
+            <h4><div key={child}>
+            {child}
+            </div></h4>
+            <ul>
+            {childTitles}
+            </ul>
+          </div>
         );
-      });
+      }, this);
     } else {
       blocks = ''
     }
