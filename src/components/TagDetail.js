@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import _ from 'lodash'
 import { getTags } from '../apis/oriole'
-import {Link} from "react-router-dom"
 
 class TagDetail extends Component {
 
@@ -102,8 +101,9 @@ class TagDetail extends Component {
     if (this.state.children) {
       blocks = this.state.children.map(child => {
         let childTitles;
+        let theURLRoot = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/proxy/"
         if (this.state.records && child in this.state.records) {
-          childTitles = this.state.records[child].map(record => <li>{record.title}</li>)
+          childTitles = this.state.records[child].map(record => <li key={record.altId}><a href={theURLRoot + record.altId}>{record.title}</a></li>)
         } else {
           childTitles = ''
         }
