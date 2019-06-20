@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
-import queryString from 'query-string'
 import _ from 'lodash'
-
-let qs = queryString.parse(window.location.search)
-let queryParam = qs.q
-let queryParamWithDashes = queryParam + " -- "
-
+import { getTags } from '../apis/oriole'
+import {Link} from "react-router-dom"
 
 class TagDetail extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { records: [] };
-    this.processRecords.bind(this);
+    this.state = {
+      records: [],
+      tag: props.match.params.queryParam,
+    }
+    const { state } = props.location
+    if (state) {
+      this.state['children'] = state.children
+    }
   }
 
   processRecords(recordset) {
@@ -25,7 +27,7 @@ class TagDetail extends Component {
     _.forEach(recordset, function(thisRecord) {
       let tempArrayLength = thisRecord.tags.tagList.length
       _.forEach(thisRecord.tags.tagList, function(thisTagListItem) {
-        if (!_.startsWith(thisTagListItem, queryParamWithDashes)) {
+        if (!_.startsWith(thisTagListItem, this.state.queryParamWithDashes)) {
           tagsToRemove.push(thisTagListItem)
         } else {
           if (tempArrayLength > maxArrayLength) { // keeping track of maximum array length here, to be used in Merge loop/function below
@@ -69,7 +71,12 @@ class TagDetail extends Component {
   }
 
   componentDidMount() {
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + queryParamWithDashes + "&limit=1000"
+    if (!this.state.children) {
+      getTags().then(tags => {
+        this.setState({children: tags[this.state.tag], ...this.state})
+      })
+    }
+    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.queryParamWithDashes + "&limit=1000"
     api = encodeURI(api)
     fetch(api, {
       headers: {
@@ -85,15 +92,27 @@ class TagDetail extends Component {
       })
       .then(d => d.json())
       .then(d => {
-        this.setState({ records: this.processRecords(d.resources) });
+        this.setState({ records: d.resources });
       })
   }
 
   render() {
+    let blocks;
+    if (this.state.children) {
+      blocks = this.state.children.map(child => {
+        return (<h4><div key={child}>
+          {child}
+        </div></h4>);
+      });
+    } else {
+      blocks = ''
+    }
+
     return (
       <div>
         <Container className="main-container">
-            <div id="tagDetailTitle"><h1>{queryParam}</h1></div>
+            <div id="tagDetailTitle"><h1>{this.state.tag}</h1></div>
+          {blocks}
         </Container>
       </div>
     );
