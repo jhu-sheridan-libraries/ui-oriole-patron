@@ -17,34 +17,55 @@ class TagDetail extends Component {
   }
 
   processRecords(recordset) {
-    // create an array of wanted tags
-    let tagsToKeep = []
-    // create array of unwanted tags
+    let processedRecordset = []
+    let tempArray = []
+    let maxArrayLength = 1 // variable to store the maximum array length encountered in tags.tagList
+    // Create an array of unwanted tags
     let tagsToRemove = []
     _.forEach(recordset, function(thisRecord) {
+      let tempArrayLength = thisRecord.tags.tagList.length
       _.forEach(thisRecord.tags.tagList, function(thisTagListItem) {
         if (!_.startsWith(thisTagListItem, queryParamWithDashes)) {
           tagsToRemove.push(thisTagListItem)
         } else {
-          tagsToKeep.push(thisTagListItem)
+          if (tempArrayLength > maxArrayLength) { // keeping track of maximum array length here, to be used in Merge loop/function below
+            maxArrayLength = tempArrayLength
+          }
         }
       });
     });
-    tagsToKeep = _.uniq(tagsToKeep);
-    tagsToKeep = _.sortBy(tagsToKeep)
     tagsToRemove = _.uniq(tagsToRemove)
-    // filter out unwanted tags from recordset tagLists
+    // Filter out unwanted tags from recordset tagLists
     _.forEach(recordset, function(thisRecord) {
       _.pullAll(thisRecord.tags.tagList, tagsToRemove)
     });
     // sort recordset by Title
     recordset = _.sortBy(recordset, ['title']);
-    // groupBy tag.tagList
-    recordset = _.groupBy(recordset, function(i) {
-      return i.tags.tagList;
-    });
+    console.log("recordset")
     console.log(recordset)
-    return recordset;
+
+    // groupBy tag.tagList
+    // TRICKY! Insofar as one Title can have multiple Tags, read and groupBy maxArrayLength deep and merge into main processedRecordset
+    let i = 0
+    for (i; i<maxArrayLength; i++) { // <-- is i< correct, or should it be i<= ???
+      tempArray = _.groupBy(recordset, function(x) {
+        return x.tags.tagList[i];
+      });
+      _.merge(processedRecordset, tempArray)
+    }
+    // Get rid of trailing undefined object which, I think, is a side effect of the merges above
+    delete processedRecordset.undefined
+
+    // Remove queryParamWithDashes string from object keys
+    processedRecordset = _.mapKeys(processedRecordset, function(value, key) {
+        let newkey = key.replace(queryParamWithDashes, '')
+        return newkey
+      });
+
+    console.log("processedRecordset")
+    console.log(processedRecordset)
+
+    return processedRecordset;
   }
 
   componentDidMount() {
