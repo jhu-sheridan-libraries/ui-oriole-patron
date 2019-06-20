@@ -12,6 +12,7 @@ import sagas from './sagas'
 import './index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
+import {Route, Switch} from "react-router";
 
 const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
@@ -24,7 +25,10 @@ sagaMiddleware.run(sagas)
 ReactDOM.render(
   <Provider store={ store }>
     <ConnectedRouter history={ history }>
-      <App/>
+      <Switch>
+        <Route exact path={'/databases/proxy/:altId'} component={() => (<div>Redirecting to database</div>)} />
+        <Route path='/' component={App} />
+      </Switch>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'))
