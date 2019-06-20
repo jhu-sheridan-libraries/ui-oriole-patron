@@ -21,15 +21,15 @@ const Header = () => {
          </Row>
         </Container>
 
-        <Container className="jhu-second-nav">
+        <Container className="jhu-second-nav col-lg-10 col-md-10">
           <Row>
             <Col className="col-lg-auto col-md-auto col-sm-* col-xs-*">
               <a href="https://catalyst.library.jhu.edu/info/libraries"><img alt="Johns Hopkins University Libraries" id="top-logo" src="/logo2.png" /></a>
             </Col>
             <Col className="col-lg-auto col-md-auto col-sm-* col-xs-*">
-              <a href="/" id="main-title">Databases</a>
+              <h1><a href="/" id="main-title">Databases</a></h1>
             </Col>
-            <Col className="col-lg-6 col-md-6">
+            <Col className="col-lg-8 col-md-8">
               <Navbar className="jhu-second-nav-links">
                 <Nav>
                   <NavItem><NavLink className="jhu-second-nav" href="/">Browse by Subject</NavLink></NavItem>

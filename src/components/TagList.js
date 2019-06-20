@@ -1,51 +1,48 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Columns from 'react-columns'
+import { Link } from 'react-router-dom'
+import { getTags } from '../apis/oriole'
 
 class TagList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { subjects: [] };
-    this.getSubjects.bind(this);
-  }
-
-  getSubjects(tags) {
-    const subjects = new Set();
-    tags.forEach(tag => {
-      const tokens = tag.split("--");
-      subjects.add(tokens[0].trim());
-    });
-    return Array.from(subjects);
+    this.state = { tags: {} };
   }
 
   componentDidMount() {
-    let { api } = this.props;
-    fetch(api, {
-      headers: {
-        'X-Okapi-Tenant': 'diku',
-        'Content-Type': 'application/json'
-      }
+    getTags().then(tags => {
+      this.setState({ tags })
     })
-      .then(response => {
-        if (!response.ok) {
-          throw Error('Network request failed')
-        }
-        return response
-      })
-      .then(d => d.json())
-      .then(d => {
-        this.setState({ subjects: this.getSubjects(d.tags) });
-      })
   }
 
   render() {
-    const subjects = Array.from(this.state.subjects);
-    const blocks = subjects.map(subject => {
-      return (<div key={subject}>{subject}</div>);
+    let queries = [{
+      columns: 2,
+      query: 'min-width: 500px'
+    }, {
+      columns: 3,
+      query: 'min-width: 1000px',
+    }]
+    let gap = "15px"
+    const mainTags = Object.keys(this.state.tags).sort()
+    const blocks = mainTags.map(tag => {
+      return (<h2><div key={tag}>
+        <Link to={{
+          pathname: "/TagDetail/" + encodeURI(tag),
+          state: {
+            children: this.state.tags[tag]
+          }
+        }} >{tag}</Link>
+      </div></h2>);
     });
     return (
-      <Fragment>
-        {blocks}
-      </Fragment>
+      <div className='resource-content'>
+      <div class="jhutext">Browse recommended databases by subject:</div><br />
+        <Fragment>
+            <Columns gap={gap} queries={queries}>{blocks}</Columns>
+        </Fragment>
+      </div>
     );
   }
 }
@@ -55,5 +52,3 @@ TagList.propTypes = {
 }
 
 export default TagList
-
-

@@ -44,7 +44,8 @@
 }
 
 *, ::after, ::before {
-    box-sizing: content-box;
+    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 body {
@@ -53,15 +54,35 @@ body {
   font-family: "Gentona", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: bottom;
+  vertical-align: bottom;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1, #main-title, #tagDetailTitle {
+  font-family: "Titling", sans-serif;
+  font-size: 31px;
+  text-transform: uppercase;
+  color: #002D72;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+a:link, a:visited {
+  color: #002D72
+}
+
+#top-logo {
+  width: 325px;
+}
+
+.nav {
+  flex-wrap: nowrap;
 }
 
 .jhu-first-nav {
-    font-family: "Gentona", sans-serif;
+    font-family: "Gentona-Medium", sans-serif;
     background-color: #002D72;
     font-size: 15px;
     color: white;
@@ -90,33 +111,14 @@ a.jhu-first-nav:hover {
   text-align: left;
 }
 
-a.jhu-second-nav, a.jhu-footer-link, a.itemTitle {
-    color: #002D72;
-}
-
 a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
     text-decoration: underline;
 }
 
 .jhu-second-nav-links {
-  vertical-align: top;
+  vertical-align: bottom;
 }
 
-.nav {
-  flex-wrap: nowrap;
-}
-
-#main-title {
-  font-family: "Titling", sans-serif;
-  font-size: 31px;
-  vertical-align: top;
-  text-transform: uppercase;
-  color: #002D72;
-}
-
-a#main-title {
-  color: #002D72;
-}
 
 .jhu-footer, #azlist {
   margin-top: 25px;
@@ -126,19 +128,19 @@ a#main-title {
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
 }
 
-#top-logo {
-  width: 325px;
-}
-
 #footer-logo {
   width: 250px;
   background-color: transparent;
 }
 
-@media screen and (max-width: 1050px) {
-  .jhu-first-nav, .jhu-second-nav-links {
-    display: none;
-  }
+#jhutext {
+  font-family: "Gentona-Italic", sans-serif;
+  margin-bottom: 15px;
+}
+
+.count {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 #SearchBox {
@@ -147,19 +149,19 @@ a#main-title {
   box-sizing: border-box;
 }
 
-.count {
-  margin-top: 15px;
-  margin-bottom: 15px;
+span.itemTitle {
+  font-family: "Gentona", sans-serif;
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .itemDescription .itemAccessRestrictions .itemMoreInfo {
   font-size: 11px;
 }
 
-.itemTitle {
-  color: #333;
-}
-
-#jhutext {
-  font-family: "Gentona-Italic", sans-serif;
+@media screen and (max-width: 1100px) {
+  .jhu-first-nav, .jhu-second-nav-links {
+    display: none;
+  }
 }
