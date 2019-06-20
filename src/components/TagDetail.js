@@ -20,6 +20,7 @@ class TagDetail extends Component {
 
   processRecords(recordset) {
     let processedRecordset = []
+    let queryParamWithDashes = this.state.tag + " -- "
     let tempArray = []
     let maxArrayLength = 1 // variable to store the maximum array length encountered in tags.tagList
     // Create an array of unwanted tags
@@ -27,7 +28,7 @@ class TagDetail extends Component {
     _.forEach(recordset, function(thisRecord) {
       let tempArrayLength = thisRecord.tags.tagList.length
       _.forEach(thisRecord.tags.tagList, function(thisTagListItem) {
-        if (!_.startsWith(thisTagListItem, this.state.queryParamWithDashes)) {
+        if (!_.startsWith(thisTagListItem, queryParamWithDashes)) {
           tagsToRemove.push(thisTagListItem)
         } else {
           if (tempArrayLength > maxArrayLength) { // keeping track of maximum array length here, to be used in Merge loop/function below
@@ -76,7 +77,7 @@ class TagDetail extends Component {
         this.setState({children: tags[this.state.tag], ...this.state})
       })
     }
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.queryParamWithDashes + "&limit=1000"
+    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.tag + " -- &limit=1000"
     api = encodeURI(api)
     fetch(api, {
       headers: {
@@ -92,7 +93,7 @@ class TagDetail extends Component {
       })
       .then(d => d.json())
       .then(d => {
-        this.setState({ records: d.resources });
+        this.setState({ records: this.processRecords(d.resources) });
       })
   }
 
@@ -100,9 +101,13 @@ class TagDetail extends Component {
     let blocks;
     if (this.state.children) {
       blocks = this.state.children.map(child => {
-        return (<h4><div key={child}>
+        //let childTitle = this.state.records["Background"][0].["title"]
+        //let childTitles = this.state.records[child].map(record => <li>record.title</li>)
+        return (
+          <h4><div key={child}>
           {child}
-        </div></h4>);
+          </div></h4>
+        );
       });
     } else {
       blocks = ''
