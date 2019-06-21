@@ -45,7 +45,7 @@
 
 *, ::after, ::before {
     box-sizing: border-box;
-    /* box-sizing: border-box; */
+    /* box-sizing: content-box; */
 }
 
 body {
@@ -54,15 +54,14 @@ body {
   font-family: "Gentona", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: bottom;
-  vertical-align: bottom;
 }
 
-h1, #main-title, #tagDetailTitle {
+h1, #main-title, .resourceDetailTitle, #tagDetailTitle {
   font-family: "Titling", sans-serif;
   font-size: 31px;
   text-transform: uppercase;
   color: #002D72;
+  margin-top: 25px;
 }
 
 h2 {
@@ -73,8 +72,18 @@ a:link, a:visited {
   color: #002D72
 }
 
+.row {
+  align-items: flex-end;
+  display: flex;
+  justify-content: left;
+}
+
 #top-logo {
   width: 325px;
+}
+
+#main-title {
+  text-align: center;
 }
 
 .nav {
@@ -99,13 +108,11 @@ a.jhu-first-nav:hover {
 }
 
 .jhu-second-nav {
-  margin-top: 25px;
+  margin-top: 10px;
   font-family: "Gentona-Bold", sans-serif;
 }
 
 .jhu-second-nav, .jhu-footer {
-  vertical-align: bottom;
-  margin-bottom: 5px;
   font-size: 15px;
   color: #002D72;
   text-align: left;
@@ -114,11 +121,6 @@ a.jhu-first-nav:hover {
 a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
     text-decoration: underline;
 }
-
-.jhu-second-nav-links {
-  vertical-align: bottom;
-}
-
 
 .jhu-footer, #azlist {
   margin-top: 25px;
@@ -145,19 +147,17 @@ a.jhu-second-nav:hover, a.jhu-footer-link:hover, a.itemTitle {
 
 #SearchBox {
   font-family: "Gentona", sans-serif;
-  margin-bottom: 15px;
-  box-sizing: border-box;
+  padding-top: 25px;
+  padding-bottom: 15px;
 }
 
 span.itemTitle {
   font-family: "Gentona", sans-serif;
   font-size: 20px;
-  margin-bottom: 0px;
-  padding-bottom: 0px;
 }
 
-.itemDescription .itemAccessRestrictions .itemMoreInfo {
-  font-size: 11px;
+.itemAccessRestrictions {
+  font-size: 12px;
 }
 
 @media screen and (max-width: 1100px) {

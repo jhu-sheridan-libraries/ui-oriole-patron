@@ -30,12 +30,12 @@ const Header = () => {
               <h1><a href="/" id="main-title">Databases</a></h1>
             </Col>
             <Col className="col-lg-8 col-md-8">
-              <Navbar className="jhu-second-nav-links">
-                <Nav>
-                  <NavItem><NavLink className="jhu-second-nav" href="/">Browse by Subject</NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav" href="/?q=*">All Databases</NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav" href="https://catalyst.library.jhu.edu" target="_blank">Library Catalog</NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav" href="https://findit.library.jhu.edu/" target="_blank">Journal Lookup</NavLink></NavItem>
+              <Navbar>
+                <Nav className="jhu-second-nav">
+                  <NavItem><NavLink className="jhu-second-nav-links" href="/">Browse by Subject</NavLink></NavItem>
+                  <NavItem><NavLink className="jhu-second-nav-links" href="/?q=*">All Databases</NavLink></NavItem>
+                  <NavItem><NavLink className="jhu-second-nav-links" href="https://catalyst.library.jhu.edu" target="_blank">Library Catalog</NavLink></NavItem>
+                  <NavItem><NavLink className="jhu-second-nav-links" href="https://findit.library.jhu.edu/" target="_blank">Journal Lookup</NavLink></NavItem>
                 </Nav>
               </Navbar>
             </Col>

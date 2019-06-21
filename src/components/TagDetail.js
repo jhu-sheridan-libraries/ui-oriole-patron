@@ -47,9 +47,17 @@ class TagDetail extends Component {
     console.log(recordset)
 
     // groupBy tag.tagList
+
+    // First, a test of groupBy the entire array, something I can check against:
+    let testArray = tempArray = _.groupBy(recordset, function(x) {
+      return x.tags.tagList;
+    });
+    console.log("Here is a test, groupBy the entire recordset array:")
+    console.log(testArray)
+
     // TRICKY! Insofar as one Title can have multiple Tags, read and groupBy maxArrayLength deep and merge into main processedRecordset
     let i = 0
-    for (i; i<maxArrayLength; i++) { // <-- is i< correct, or should it be i<= ???
+    for (i; i<maxArrayLength; i++) { // <-- is i< correct, or should it be i<= ???  Check against testArray above
       tempArray = _.groupBy(recordset, function(x) {
         return x.tags.tagList[i];
       });
@@ -103,7 +111,7 @@ class TagDetail extends Component {
         let childTitles;
         let theURLRoot = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/proxy/"
         if (this.state.records && child in this.state.records) {
-          childTitles = this.state.records[child].map(record => <li key={record.altId}><a href={theURLRoot + record.altId}>{record.title}</a></li>)
+          childTitles = this.state.records[child].map(record => <li key={record.altId}><a href={theURLRoot + record.altId} target="_blank">{record.title}</a></li>)
         } else {
           childTitles = ''
         }
