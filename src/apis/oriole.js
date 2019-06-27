@@ -13,7 +13,7 @@ export const searchOriole = (searchParams) => {
     params.query = `title="^${ query }*" sortby title`
   }
   console.log(params.query)
-  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/resources?${ qs.stringify(params) }`
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/databases?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     if (query) {
       return fetch(url, {
@@ -38,7 +38,7 @@ export const searchOriole = (searchParams) => {
 
 export const getResourceOriole = (altId) => { // retrieve single record by altId
   const params = {query:`altId==${altId}`}
-  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/resources?${ qs.stringify(params) }`
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/databases?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     return fetch(url, {
       headers: {

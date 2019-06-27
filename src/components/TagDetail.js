@@ -81,10 +81,10 @@ class TagDetail extends Component {
   componentDidMount() {
     if (!this.state.children) {
       getTags().then(tags => {
-        this.setState({children: tags[this.state.tag], ...this.state})
+        this.setState({ children: tags[this.state.tag] })
       })
     }
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/resources?query=tags.tagList=/respectAccents ' + this.state.tag + " -- &limit=1000"
+    let api=process.env.REACT_APP_API_ROOT + '/oriole/databases?query=tags.tagList=/respectAccents ' + this.state.tag + " -- &limit=1000"
     api = encodeURI(api)
     fetch(api, {
       headers: {
