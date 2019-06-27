@@ -29,7 +29,7 @@ class TagList extends React.Component {
     const blocks = mainTags.map(tag => {
       return (<h2><div key={tag}>
         <Link to={{
-          pathname: "/TagDetail/" + encodeURI(tag),
+          pathname: "/databases/subject/" + encodeURI(tag),
           state: {
             children: this.state.tags[tag]
           }

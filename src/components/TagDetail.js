@@ -9,7 +9,7 @@ class TagDetail extends Component {
     super(props);
     this.state = {
       records: [],
-      tag: props.match.params.queryParam,
+      tag: props.match.params.tag,
     }
     const { state } = props.location
     if (state) {
