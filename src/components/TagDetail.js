@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import _ from 'lodash'
-import { getTags } from '../apis/oriole'
+import { getTags, getTag } from '../apis/oriole'
 
 class TagDetail extends Component {
 
@@ -84,24 +84,9 @@ class TagDetail extends Component {
         this.setState({ children: tags[this.state.tag] })
       })
     }
-    let api=process.env.REACT_APP_API_ROOT + '/oriole/databases?query=tags.tagList=/respectAccents ' + this.state.tag + " -- &limit=1000"
-    api = encodeURI(api)
-    fetch(api, {
-      headers: {
-        'X-Okapi-Tenant': 'diku',
-        'Content-Type': 'application/json'
-      }
+    getTag(this.state.tag).then(resources => {
+      this.setState({ records: this.processRecords(resources) })
     })
-      .then(response => {
-        if (!response.ok) {
-          throw Error('Network request failed')
-        }
-        return response
-      })
-      .then(d => d.json())
-      .then(d => {
-        this.setState({ records: this.processRecords(d.resources) });
-      })
   }
 
   render() {

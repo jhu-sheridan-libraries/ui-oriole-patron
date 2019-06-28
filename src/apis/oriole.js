@@ -91,5 +91,26 @@ export const getTags = () => {
       })
       .catch(error => reject(error))
   })
+}
 
+export const getTag = (tag) => {
+  let url = `${process.env.REACT_APP_API_ROOT}/oriole/databases?query=tags.tagList=/respectAccents ${tag} -- &limit=1000`
+  url = encodeURI(url)
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      headers: {
+        'X-Okapi-Tenant': 'diku',
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error('Network request failed')
+        }
+        return response
+      })
+      .then(d => d.json())
+      .then(d => resolve(d.resources))
+      .catch(error => reject(error))
+  })
 }
