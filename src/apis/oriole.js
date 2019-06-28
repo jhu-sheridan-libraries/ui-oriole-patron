@@ -12,7 +12,6 @@ export const searchOriole = (searchParams) => {
   if (query.length < 2) {
     params.query = `title="^${ query }*" sortby title`
   }
-  console.log(params.query)
   const url = `${ process.env.REACT_APP_API_ROOT }/oriole/databases?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     if (query) {
@@ -67,7 +66,6 @@ export const getTags = () => {
       }
     })
       .then(response => {
-        console.log(response)
         if (!response.ok) {
           throw Error(response.statusText)
         }
@@ -86,7 +84,6 @@ export const getTags = () => {
             subjects[first].push(tokens[1].trim())
           }
         })
-        console.log(subjects)
         resolve(subjects)
       })
       .catch(error => reject(error))
