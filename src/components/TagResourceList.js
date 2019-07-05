@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTag } from '../apis/oriole';
 
-export default class TagResourceList extends React.Component {
+class TagResourceList extends React.Component {
 
   constructor(props) {
     super(props)
@@ -59,9 +59,18 @@ export default class TagResourceList extends React.Component {
       <ul>
         { resources.map(record => {
           return ( <li key={record.altId}>
-            <a href={`${root}/databases/proxy/${record.altId}`} target='_blank'>
-              { record.title }
-            </a>
+            <span>
+              <a href={`${root}/databases/proxy/${record.altId}`} target='_blank' rel='noopener noreferrer'>
+                { record.title }
+              </a>
+            </span>&nbsp;&nbsp;
+            <span className='itemMoreInfo'>
+              <small>
+                <a href={`${root}/databases/database/${record.altId}`}>
+                  [ More Info <img src={`${root}/icon-arrow-circle-green.svg`} alt=""/> ]
+                </a>
+              </small>
+            </span>
           </li> )
         }) }
       </ul>
@@ -71,7 +80,7 @@ export default class TagResourceList extends React.Component {
   render() {
     let { tag, resources, subTags } = this.state
     if (typeof tag === 'undefined') {
-      return <div></div>
+      return ''
     } else if (Object.keys(subTags).length === 0) {
       return this.renderResources(resources)
     } else {
@@ -85,3 +94,5 @@ export default class TagResourceList extends React.Component {
     }
   }
 }
+
+export default TagResourceList
