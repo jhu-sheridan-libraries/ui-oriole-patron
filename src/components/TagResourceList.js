@@ -8,7 +8,7 @@ export default class TagResourceList extends React.Component {
     this.state = {
       resources: [],
       tag: props.tag,
-      subTags: {}
+      subTags: {},
     }
   }
 
@@ -54,16 +54,23 @@ export default class TagResourceList extends React.Component {
   }
 
   renderResources = (resources) => {
+    let root = this.props.root || ''
     return (
       <ul>
-        { resources.map(item => <li key={item.id}>{item.title}</li>)}
+        { resources.map(record => {
+          return ( <li key={record.altId}>
+            <a href={`${root}/databases/proxy/${record.altId}`} target='_blank'>
+              { record.title }
+            </a>
+          </li> )
+        }) }
       </ul>
     )
   }
 
   render() {
     let { tag, resources, subTags } = this.state
-    if (typeof tag == 'undefined') {
+    if (typeof tag === 'undefined') {
       return <div></div>
     } else if (Object.keys(subTags).length === 0) {
       return this.renderResources(resources)
@@ -78,4 +85,3 @@ export default class TagResourceList extends React.Component {
     }
   }
 }
-

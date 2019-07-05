@@ -1,8 +1,8 @@
 import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import { uglify } from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
+import { uglify } from 'rollup-plugin-uglify';
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -24,17 +24,17 @@ const getBabelOptions = ({ useESModules }) => ({
 export default {
   plugins: [
     replace({
-      'process.env.REACT_APP_API_ROOT': JSON.stringify(process.env.REACT_APP_API_ROOT)
+      'process.env.REACT_APP_API_ROOT': JSON.stringify(process.env.REACT_APP_API_ROOT),
+      'process.env.ORIOLE_PATRON_UI_ROOT': JSON.stringify(process.env.ORIOLE_PATRON_UI_ROOT)
     }),
     resolve(),
     commonjs({
       include: 'node_modules/**',
       namedExports: {
-        //'node_modules/react-is/index.js': ['isValidElementType', 'isContextConsumer', 'isForwardRef']
       }
     }),
     babel(getBabelOptions({ useESModules: true })),
-    //uglify(),
+    uglify(),
   ],
   input: [
     'src/widgets/tags.js'
