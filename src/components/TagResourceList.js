@@ -16,14 +16,22 @@ class TagResourceList extends React.Component {
     return !(tag.includes(' -- '))
   }
 
+  getSubTag = (tag) => {
+    let tokens = tag.split(' -- ')
+    if (tokens.length > 1) {
+      return tokens[1];
+    } else {
+      return undefined
+    }
+  }
+
   processResources = (resources) => {
-    const { tag } = this.state
-    if (this.isTopLevel(tag)) {
+    if (this.isTopLevel(this.state.tag)) {
       let subTags = {}
       resources.forEach(resource => {
-        resource.tags.tagList.forEach(t => {
-          if (t.startsWith(tag)) {
-            let subTag = t.split(' -- ')[1]
+        resource.tags.tagList.forEach(tag => {
+          if (tag.startsWith(this.state.tag)) {
+            let subTag = this.getSubTag(tag)
             if (!(subTag in subTags)) {
               subTags[subTag] = []
             }
@@ -45,9 +53,7 @@ class TagResourceList extends React.Component {
     resources.sort((a, b) => a.title > b.title ? 1 : -1)
     return (
       <div>
-        <h4><div key={subTag}>
-          { subTag }
-        </div></h4>
+        <h4>{ subTag }</h4>
         { this.renderResources(resources) }
       </div>
     )
@@ -82,7 +88,8 @@ class TagResourceList extends React.Component {
     if (typeof tag === 'undefined') {
       return ''
     } else if (Object.keys(subTags).length === 0) {
-      return this.renderResources(resources)
+      const subTag = this.getSubTag(tag)
+      return this.renderSubTag(subTag, resources)
     } else {
       const blocks = Object.keys(subTags).map((key) => this.renderSubTag(key, subTags[key]))
       return (
