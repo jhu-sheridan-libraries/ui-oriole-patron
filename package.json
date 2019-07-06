@@ -51,6 +51,7 @@
     "@babel/core": "7.1.0",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@svgr/webpack": "2.4.1",
