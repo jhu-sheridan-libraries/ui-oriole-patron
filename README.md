@@ -31,6 +31,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn run storybook`
+
+Runs storybook at [http://localhost:6006](http://localhost:6006)
+
+### `yarn run build-widgets`
+
+It creates a minified file at `build/oriole-widgets.js`. It can be used on a third-party site such as libguides. 
 
 ## Learn More
 
