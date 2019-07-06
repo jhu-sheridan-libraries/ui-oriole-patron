@@ -17,7 +17,8 @@ storiesOf('Button', module)
         😀 😎 👍 💯
       </span>
     </Button>
-  ))
+  ));
+storiesOf('Widgets', module)
   .add('Top Level Tag', () => (
     <TagResourceList
       key='History of Science Technology + Medicine'
