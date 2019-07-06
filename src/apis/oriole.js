@@ -91,8 +91,15 @@ export const getTags = () => {
 }
 
 export const getTag = (tag) => {
-  let url = `${process.env.REACT_APP_API_ROOT}/oriole/databases?query=tags.tagList=/respectAccents ${tag} -- &limit=1000`
-  url = encodeURI(url)
+  if (!tag.includes(' -- ')) {
+    tag += ' -- '
+  }
+  let params = {
+    query: 'tags.tagList=/respectAccents/ignoreCase "' + tag + '" sortBy title',
+    limit: 1000
+  }
+  let url = new URL(`${process.env.REACT_APP_API_ROOT}/oriole/databases`)
+  url.search = new URLSearchParams(params).toString()
   return new Promise((resolve, reject) => {
     fetch(url, {
       headers: {
