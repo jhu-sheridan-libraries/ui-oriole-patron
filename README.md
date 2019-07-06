@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jhu-sheridan-libraries/jhu_bento.svg?branch=master)](https://travis-ci.org/jhu-sheridan-libraries/ui-oriole-patron)
+[![Build Status](https://travis-ci.org/jhu-sheridan-libraries/ui-oriole-patron.svg?branch=master)](https://travis-ci.org/jhu-sheridan-libraries/ui-oriole-patron)
 [![Maintainability](https://api.codeclimate.com/v1/badges/caf089112f829329a4f6/maintainability)](https://codeclimate.com/github/jhu-sheridan-libraries/ui-oriole-patron/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/caf089112f829329a4f6/test_coverage)](https://codeclimate.com/github/jhu-sheridan-libraries/ui-oriole-patron/test_coverage)
 
