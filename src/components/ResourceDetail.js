@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as selectors from '../selectors/resource'
 import { fetchRecord } from '../actions'
 import { Container } from 'reactstrap'
+import _ from 'lodash'
 
 
 const mapStateToProps = (state) => {
@@ -34,6 +35,30 @@ function returnAccessRestrictions(accessRestrictionsArray) {
   return null
 }
 
+function getSubTag(tag) {
+  let tokens = tag.split(' -- ')
+  if (tokens.length > 0) {
+    return tokens[0];
+  } else {
+    return undefined
+  }
+}
+
+function returnTagsList(tags) {
+  let tagsList = []
+  let thisTag = ""
+  let htmlTagsList = ""
+  for (var i = 0; i < tags.tagList.length; i++) {
+    thisTag = getSubTag(tags.tagList[i])
+    tagsList.push("<a href=" + window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/subject/" + encodeURI(thisTag) + ">" + thisTag + "</a>")
+  }
+  tagsList = _.uniq(tagsList)
+  tagsList = tagsList.sort()
+  tagsList = tagsList.join("; ")
+  htmlTagsList = "<b>Recommended for these subject areas:</b><br /> " + tagsList
+  return {__html: htmlTagsList}
+}
+
 class ResourceDetail extends Component {
 
   render() {
@@ -45,23 +70,16 @@ class ResourceDetail extends Component {
 
       let theURL = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/proxy/" + record.altId
 
-      let tagsList = []
-      for (var i = 0; i < record.tags.tagList.length; i++) {
-        tagsList.push(record.tags.tagList[i])
-      }
-      tagsList = tagsList.sort()
-      tagsList = tagsList.join("; ")
-
       return (
         <Container className="main-container">
-          <div className='item' itemscope itemtype="http://schema.org/DigitalDocument">
-            <span className='resourceDetailTitle'><h1><a href={ theURL } target='_new'><div itemprop="name">{ record.title }</div></a></h1></span><p />
-            <span className='itemDescription'><b>URL:</b> <div itemprop="url">{ theURL }</div></span><p />
-            <span className='itemDescription'><b>About this Database:</b> <div itemprop="description">{ record.description }</div></span><p />
+          <div className='item' itemScope itemType="http://schema.org/DigitalDocument">
+            <span className='resourceDetailTitle'><h1><a href={ theURL } target='_new'><div itemProp="name">{ record.title }</div></a></h1></span><p />
+            <span className='itemDescription'><b>URL:</b> <div itemProp="url">{ theURL }</div></span><p />
+            <span className='itemDescription'><b>About this Database:</b> <div itemProp="description">{ record.description }</div></span><p />
             <span className='itemDescription' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
-            <span className='itemDescription'><b>Creator:</b> <div itemprop="creator">{ record.creator }</div></span><p />
-            <span className='itemDescription'><b>Publisher:</b> <div itemprop="publisher">{ record.publisher }</div></span><p />
-            <span className='itemDescription'><b>Recommended for these subject areas:</b> <div itemprop="keywords">{ tagsList }</div></span><p />
+            <span className='itemDescription'><b>Creator:</b> <div itemProp="creator">{ record.creator }</div></span><p />
+            <span className='itemDescription'><b>Publisher:</b> <div itemProp="publisher">{ record.publisher }</div></span><p />
+            <span className='itemDescription' itemProp="keywords" dangerouslySetInnerHTML={returnTagsList(record.tags)} /><p />
             <p></p>
             </div>
         </Container>
