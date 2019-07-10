@@ -54,7 +54,7 @@ function returnTagsList(tags) {
   }
   tagsList = _.uniq(tagsList)
   tagsList = tagsList.sort()
-  tagsList = tagsList.join("; ")
+  tagsList = tagsList.join("<br />")
   htmlTagsList = "<b>Recommended for these subject areas:</b><br /> " + tagsList
   return {__html: htmlTagsList}
 }
