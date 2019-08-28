@@ -29,6 +29,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
+To deploy to the test server, for example, remove all files from `oriole-test:/opt/ui_patron`, and then copy the content in `build` to `oriole-test:/opt/ui_patron`. 
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `yarn run storybook`
