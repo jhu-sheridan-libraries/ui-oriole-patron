@@ -73,7 +73,7 @@ class ResourceDetail extends Component {
       return (
         <Container className="main-container">
           <div className='item' itemScope itemType="http://schema.org/DigitalDocument">
-            <span className='resourceDetailTitle'><h1><a href={ theURL } target='_new'><div itemProp="name">{ record.title }</div></a></h1></span><p />
+            <span className='resourceDetailTitle'><h2><a href={ theURL } target='_new'><div itemProp="name">{ record.title }</div></a></h2></span><p />
             <span className='itemDescription'><b>URL:</b> <div itemProp="url">{ theURL }</div></span><p />
             <span className='itemDescription'><b>About this Database:</b> <div itemProp="description">{ record.description }</div></span><p />
             <span className='itemDescription' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />

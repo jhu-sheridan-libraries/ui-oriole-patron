@@ -122,7 +122,7 @@ class TagDetail extends Component {
     return (
       <div>
         <Container className="main-container">
-            <div id="tagDetailTitle"><h1>{this.state.tag}</h1></div>
+            <div id="tagDetailTitle"><h2>{this.state.tag}</h2></div>
           {blocks}
         </Container>
       </div>

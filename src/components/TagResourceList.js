@@ -94,7 +94,7 @@ class TagResourceList extends React.Component {
       const blocks = Object.keys(subTags).map((key) => this.renderSubTag(key, subTags[key]))
       return (
         <div>
-          <div id="tagDetailTitle"><h1>{this.state.tag}</h1></div>
+          <div id="tagDetailTitle"><h2>{this.state.tag}</h2></div>
           { blocks }
         </div>
       )

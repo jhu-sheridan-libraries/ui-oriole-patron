@@ -27,14 +27,14 @@ class TagList extends React.Component {
     let gap = "15px"
     const mainTags = Object.keys(this.state.tags).sort()
     const blocks = mainTags.map(tag => {
-      return (<h2><div key={tag}>
+      return (<h3><div key={tag}>
         <Link to={{
           pathname: "/databases/subject/" + encodeURI(tag),
           state: {
             children: this.state.tags[tag]
           }
         }} >{tag}</Link>
-      </div></h2>);
+      </div></h3>);
     });
     return (
       <div className='resource-content'>
