@@ -41,6 +41,13 @@ Runs storybook at [http://localhost:6006](http://localhost:6006)
 
 It creates a minified file at `build/oriole-widgets.js`. It can be used on a third-party site such as libguides. 
 
+### `To use the widget code`
+
+<p><script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-is@16/umd/react-is.production.min.js"></script>
+<script crossorigin src="https://bespoke.mse.jhu.edu/oriole/widgets.js">​</script></p>
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
