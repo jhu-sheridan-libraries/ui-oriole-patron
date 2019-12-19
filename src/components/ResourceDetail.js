@@ -77,7 +77,6 @@ class ResourceDetail extends Component {
             <span className='itemDescription'><b>URL:</b> <div itemProp="url">{ theURL }</div></span><p />
             <span className='itemDescription'><b>About this Database:</b> <div itemProp="description">{ record.description }</div></span><p />
             <span className='itemDescription' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
-            <span className='itemDescription'><b>Creator:</b> <div itemProp="creator">{ record.creator }</div></span><p />
             <span className='itemDescription'><b>Publisher:</b> <div itemProp="publisher">{ record.publisher }</div></span><p />
             <span className='itemDescription' itemProp="keywords" dangerouslySetInnerHTML={returnTagsList(record.tags)} /><p />
             <p></p>
