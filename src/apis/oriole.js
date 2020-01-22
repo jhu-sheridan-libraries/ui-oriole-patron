@@ -17,7 +17,7 @@ export const searchOriole = (searchParams) => {
     if (query) {
       return fetch(url, {
         headers: {
-          'X-Okapi-Tenant': 'diku',
+          'X-Okapi-Tenant': 'jhu',
           'Content-Type': 'application/json'
         }
       })
@@ -41,7 +41,7 @@ export const getResourceOriole = (altId) => { // retrieve single record by altId
   return new Promise((resolve, reject) => {
     return fetch(url, {
       headers: {
-        'X-Okapi-Tenant': 'diku',
+        'X-Okapi-Tenant': 'jhu',
         'Content-Type': 'application/json'
       }
     })
@@ -61,7 +61,7 @@ export const getTags = () => {
   return new Promise((resolve, reject) => {
     fetch(url, {
       headers: {
-        'X-Okapi-Tenant': 'diku',
+        'X-Okapi-Tenant': 'jhu',
         'Content-Type': 'application/json'
       }
     })
@@ -103,7 +103,7 @@ export const getTag = (tag) => {
   return new Promise((resolve, reject) => {
     fetch(url, {
       headers: {
-        'X-Okapi-Tenant': 'diku',
+        'X-Okapi-Tenant': 'jhu',
         'Content-Type': 'application/json'
       }
     })
