@@ -74,7 +74,7 @@ class ResourceDetail extends Component {
         <Container className="main-container">
           <div className='item' itemScope itemType="http://schema.org/DigitalDocument">
             <span className='resourceDetailTitle'><h2><a href={ theURL } target='_new'><div itemProp="name">{ record.title }</div></a></h2></span><p />
-            <span className='itemDescription'><b>URL:</b> <div itemProp="url">{ theURL }</div></span><p />
+            <span className='itemDescription'><b>Durable URL:</b> <div itemProp="url"><i>This is the permanent URL for the database. It should be used in syllabi, lists of resources, and all other links provided to Johns Hopkins users.</i></div> <div itemProp="url"><a href="{ theURL}">{ theURL }</a></div></span><p />
             <span className='itemDescription'><b>About this Database:</b> <div itemProp="description">{ record.description }</div></span><p />
             <span className='itemDescription' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
             <span className='itemDescription'><b>Publisher:</b> <div itemProp="publisher">{ record.publisher }</div></span><p />
