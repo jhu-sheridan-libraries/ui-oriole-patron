@@ -77,7 +77,7 @@ class ResourceDetail extends Component {
             <span className='itemDescription'><b>Durable URL:</b> <div><i>This is the permanent URL for the database. It should be used in syllabi, lists of resources, and all other links provided to Johns Hopkins users.</i></div> <div itemProp="url"><a href={ theURL}>{ theURL }</a></div></span><p />
             <span className='itemDescription'><b>About this Database:</b> <div itemProp="description">{ record.description }</div></span><p />
             <span className='itemDescription' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
-            <span className='itemDescription'><b>Publisher:</b> <div itemProp="publisher">{ record.publisher }</div></span><p />
+            <span className='itemDescription'><b>Provider:</b> <div itemProp="provider">{ record.provider }</div></span><p />
             <span className='itemDescription' itemProp="keywords" dangerouslySetInnerHTML={returnTagsList(record.tags)} /><p />
             <p></p>
             </div>
