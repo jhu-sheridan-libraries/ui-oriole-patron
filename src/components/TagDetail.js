@@ -44,8 +44,8 @@ class TagDetail extends Component {
     });
     // sort recordset by Title
     recordset = _.sortBy(recordset, ['title']);
-    console.log("recordset")
-    console.log(recordset)
+    //console.log("recordset")
+    //console.log(recordset)
 
     // groupBy tag.tagList
 
@@ -53,8 +53,8 @@ class TagDetail extends Component {
     let testArray = tempArray = _.groupBy(recordset, function(x) {
       return x.tags.tagList;
     });
-    console.log("Here is a test, groupBy the entire recordset array:")
-    console.log(testArray)
+    //console.log("Here is a test, groupBy the entire recordset array:")
+    //console.log(testArray)
 
     // TRICKY! Insofar as one Title can have multiple Tags, read and groupBy maxArrayLength deep and merge into main processedRecordset
     let i = 0
@@ -73,8 +73,8 @@ class TagDetail extends Component {
         return newkey
       });
 
-    console.log("processedRecordset")
-    console.log(processedRecordset)
+    //console.log("processedRecordset")
+    //console.log(processedRecordset)
 
     return processedRecordset;
   }
@@ -93,6 +93,13 @@ class TagDetail extends Component {
   render() {
     let blocks;
     if (this.state.children) {
+      // Bump Core Databases to top of array
+      for (var i = 0; i < this.state.children.length; i++) {
+        if(this.state.children[i] === "Core Databases"){
+          this.state.children.splice(i, 1);
+          this.state.children.unshift("Core Databases");
+        }
+      }
       blocks = this.state.children.map(child => {
         let childTitles;
         if (this.state.records && child in this.state.records) {
@@ -105,7 +112,7 @@ class TagDetail extends Component {
           childTitles = ''
         }
         return (
-          <div>
+          <div id={child} ref={child}>
             <h4><div key={child}>
               {child}
             </div></h4>
@@ -122,7 +129,7 @@ class TagDetail extends Component {
     return (
       <div>
         <Container className="main-container">
-            <div id="tagDetailTitle"><h2>{this.state.tag}</h2></div>
+            <div id="tagDetailTitle" ref="tagDetailTitle"><h2>{this.state.tag}</h2></div>
           {blocks}
         </Container>
       </div>
