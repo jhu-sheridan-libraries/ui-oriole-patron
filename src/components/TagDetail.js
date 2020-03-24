@@ -113,9 +113,9 @@ class TagDetail extends Component {
         }
         return (
           <div id={child} ref={child}>
-            <h4><div key={child}>
+            <h2><div key={child}>
               {child}
-            </div></h4>
+            </div></h2>
             <ul>
               {childTitles}
             </ul>

@@ -83,7 +83,8 @@ a:link, a:visited {
 }
 
 #top-logo {
-  width: 325px;
+width: 200px;  /* was 325 */
+vertical-align:10%;
 }
 
 #main-title {
@@ -101,6 +102,9 @@ a:link, a:visited {
     color: white;
     text-align: left;
     width: 100%;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 a.jhu-first-nav {

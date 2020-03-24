@@ -40,7 +40,8 @@ class ResourceList extends Component {
       let body = totalRecords > 0 ? items : ''
       return (
         <div id={ id } className='resource-list'>
-          { totalRecords >= 0 && <div className='count'>{ totalRecords.toLocaleString('en') } Databases</div> }
+          { totalRecords >= 0 && totalRecords >= 2 && <div className='count'>{ totalRecords.toLocaleString('en') } Databases</div> }
+          { totalRecords == 1  && <div className='count'>{ totalRecords.toLocaleString('en') } Database</div> }
           <div className='resource-content'>{ totalRecords > 0 && <Columns gap={gap} queries={queries}>{ body }</Columns> }</div>
 {/*
           { isFetching && <div>Loading...</div> }
