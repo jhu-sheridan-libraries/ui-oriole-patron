@@ -43,6 +43,14 @@
   font-display: swap;
 }
 
+#separationGlyph {
+  padding-top: 7px;
+}
+
+.remoteLink:after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+}
+
 ::-webkit-input-placeholder {
 	 color: #767676;
 	 opacity: 1;

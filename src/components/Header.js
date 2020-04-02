@@ -34,8 +34,9 @@ const Header = () => {
                 <Nav className="jhu-second-nav">
                   <NavItem><NavLink className="jhu-second-nav-links" href="/">Browse by Subject</NavLink></NavItem>
                   <NavItem><NavLink className="jhu-second-nav-links" href="/?q=*">All Databases</NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav-links" href="https://catalyst.library.jhu.edu" target="_blank">Library Catalog</NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav-links" href="https://findit.library.jhu.edu/" target="_blank">Journal Lookup</NavLink></NavItem>
+                  <div id="separationGlyph">|</div>
+                  <NavItem><NavLink className="jhu-second-nav-links, remoteLink" href="https://catalyst.library.jhu.edu" target="_blank">Library Catalog </NavLink></NavItem>
+                  <NavItem><NavLink className="jhu-second-nav-links, remoteLink" href="https://findit.library.jhu.edu/" target="_blank">Journal Lookup  </NavLink></NavItem>
                 </Nav>
               </Navbar>
             </Col>
