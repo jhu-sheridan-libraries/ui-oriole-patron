@@ -29,7 +29,7 @@ const ResourceItem = ({ record, index, history }) => (
       <h2 class="itemTitle"><a href={ "https://databases.library.jhu.edu/databases/proxy/" + record.altId } target='_new'>{ record.title }</a></h2>
       <span class='itemDescription'>{ returnTrimmedDescription(record.description) }...</span><br />
       <span class='itemAccessRestrictions' dangerouslySetInnerHTML={returnAccessRestrictions(record.accessRestrictions)} />
-      <span class='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info <img src="icon-arrow-circle-green.svg" alt="" /></Link></span>
+      <span class='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info <img src="/icon-arrow-circle-green.svg" alt="" /></Link></span>
 
       <p></p>
   </div>
