@@ -68,7 +68,7 @@ class ResourceDetail extends Component {
 
       document.title = "Johns Hopkins Libraries Databases: " + record.title
 
-      let theURL = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/databases/proxy/" + record.altId
+      let theURL = window.location.protocol + "//" + window.location.hostname + "/databases/proxy/" + record.altId
 
       return (
         <Container className="main-container">
