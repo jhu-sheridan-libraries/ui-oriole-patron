@@ -105,14 +105,14 @@ class TagDetail extends Component {
         if (this.state.records && child in this.state.records) {
           childTitles = this.state.records[child].map(record =>
             <li key={record.altId}>
-              <Link to={`/databases/proxy/${record.altId}`} target="_blank">{record.title}</Link> &nbsp;&nbsp;&nbsp;  <span class='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info <img src="/icon-arrow-circle-green.svg" alt="" /></Link></span>
+              <Link to={`/databases/proxy/${record.altId}`} target="_blank">{record.title}</Link> &nbsp;&nbsp;&nbsp;  <span className='itemMoreInfo'><Link to={{pathname: "/databases/database/" + record.altId}} >More Info <img src="/icon-arrow-circle-green.svg" alt="" /></Link></span>
             </li>
           )
         } else {
           childTitles = ''
         }
         return (
-          <div id={child} ref={child}>
+          <div id={child} ref={child} key={child}>
             <h2><div key={child}>
               {child}
             </div></h2>

@@ -27,7 +27,7 @@ class TagList extends React.Component {
     let gap = "15px"
     const mainTags = Object.keys(this.state.tags).sort()
     const blocks = mainTags.map(tag => {
-      return (<h3><div key={tag}>
+      return (<h3 key={tag}><div key={tag}>
         <Link to={{
           pathname: "/databases/subject/" + encodeURI(tag),
           state: {
@@ -38,7 +38,7 @@ class TagList extends React.Component {
     });
     return (
       <div className='resource-content'>
-      <div class="jhutext">Browse recommended databases by subject:</div><br />
+      <div className="jhutext">Browse recommended databases by subject:</div><br />
         <Fragment>
             <Columns gap={gap} queries={queries}>{blocks}</Columns>
         </Fragment>
