@@ -64,7 +64,7 @@ function* fetchResource(action) { // saga to fetch single resource based on altI
     if (proxy) {
       let record = response.resources[0]
       if (record.proxy) {
-        window.location = `http://proxy2.library.jhu.edu/login?url=${ record.url }`
+        window.location = `http://proxy1.library.jhu.edu/login?url=${ record.url }`
       } else {
         window.location = record.url
       }
