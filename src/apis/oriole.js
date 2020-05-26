@@ -12,7 +12,7 @@ export const searchOriole = (searchParams) => {
   if (query.length < 2) {
     params.query = `title="^${ query }*" sortby title`
   }
-  const url = `${ process.env.REACT_APP_API_ROOT }?${ qs.stringify(params) }`
+  const url = `${ process.env.REACT_APP_API_ROOT }/oriole/databases?${ qs.stringify(params) }`
   return new Promise((resolve, reject) => {
     if (query) {
       return fetch(url, {
