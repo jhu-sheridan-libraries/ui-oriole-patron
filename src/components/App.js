@@ -6,7 +6,7 @@ import Footer from './Footer'
 import Search from './Search'
 import AZList from './AZList'
 import ResourceDetail from './ResourceDetail'
-import TagDetail from './TagDetail'
+import TagResourceList from './TagResourceList'
 
 class App extends Component {
   render() {
@@ -16,8 +16,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={ Search }/>
           <Route path='/AZList' component={ AZList } />
-          <Route path='/databases/subject/:tag' component={ TagDetail } />
-		      <Route path='/embed/subject/:tag' component={ TagDetail } />
+          <Route path='/databases/subject/:tag' component={ TagResourceList } />
+		      <Route path='/embed/subject/:tag' component={ TagResourceList } />
           <Route path='/databases/database/:altId' component={ ResourceDetail }/>
         </Switch>
         <Footer />

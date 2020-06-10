@@ -1,5 +1,6 @@
 import React from 'react';
-import { getTag } from '../apis/oriole';
+import { Container } from 'reactstrap'
+import { getTags, getTag } from '../apis/oriole'
 
 class TagResourceList extends React.Component {
 
@@ -7,7 +8,7 @@ class TagResourceList extends React.Component {
     super(props)
     this.state = {
       resources: [],
-      tag: props.tag,
+      tag: props.match.params.tag,
       subTags: {},
     }
   }
@@ -39,20 +40,32 @@ class TagResourceList extends React.Component {
           }
         })
       })
-      subTags = Object.keys(subTags).sort().reduce((r, k) => (r[k] = subTags[k], r), {})
+      // Bump Core Databases to the top
+      // First, create an array of the subTags in the desired order
+      let desiredOrderArray = Object.keys(subTags).filter(key => key !== "Core Databases").sort()
+      desiredOrderArray.unshift("Core Databases")
+      // Order by the desired order array in the sort function in this line:
+      subTags = Object.keys(subTags).sort((a,b) => { return desiredOrderArray.indexOf(a) - desiredOrderArray.indexOf(b) }).reduce((r, k) => (r[k] = subTags[k], r), {})
       this.setState({ subTags })
     }
     this.setState({ resources })
   }
 
   componentDidMount() {
-    getTag(this.state.tag).then(resources => this.processResources(resources))
+    if (!this.state.children) {
+      getTags().then(tags => {
+        this.setState({ children: tags[this.state.tag] })
+      })
+    }
+    getTag(this.state.tag).then(resources => {
+      this.setState({ records: this.processResources(resources) })
+    })
   }
 
   renderSubTag = (subTag, resources) => {
     resources.sort((a, b) => a.title > b.title ? 1 : -1)
     return (
-      <div>
+      <div key={subTag}>
         <h4>{ subTag }</h4>
         { this.renderResources(resources) }
       </div>
@@ -94,8 +107,10 @@ class TagResourceList extends React.Component {
       const blocks = Object.keys(subTags).map((key) => this.renderSubTag(key, subTags[key]))
       return (
         <div>
-          <div id="tagDetailTitle"><h2>{this.state.tag}</h2></div>
-          { blocks }
+          <Container className="main-container">
+            <div id="tagDetailTitle"><h2>{this.state.tag}</h2></div>
+            { blocks }
+          </Container>
         </div>
       )
     }
