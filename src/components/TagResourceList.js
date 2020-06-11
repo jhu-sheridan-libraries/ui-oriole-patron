@@ -63,7 +63,8 @@ class TagResourceList extends React.Component {
   }
 
   renderSubTag = (subTag, resources) => {
-    resources.sort((a, b) => a.title > b.title ? 1 : -1)
+    // Must sort case insensitive here
+    resources.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1)
     return (
       <div key={subTag}>
         <h4>{ subTag }</h4>
