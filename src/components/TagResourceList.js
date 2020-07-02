@@ -105,6 +105,7 @@ class TagResourceList extends React.Component {
       const subTag = this.getSubTag(tag)
       return this.renderSubTag(subTag, resources)
     } else {
+      document.title = tag
       const blocks = Object.keys(subTags).map((key) => this.renderSubTag(key, subTags[key]))
       return (
         <div>

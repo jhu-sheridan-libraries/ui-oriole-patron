@@ -70,7 +70,7 @@ class ResourceDetail extends Component {
 
     if (typeof record !== 'undefined') {
 
-      document.title = "Johns Hopkins Libraries Databases: " + record.title
+      document.title = record.title
 
       let theURL = window.location.protocol + "//" + window.location.hostname + "/databases/proxy/" + record.altId
 
