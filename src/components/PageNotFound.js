@@ -13,13 +13,14 @@ class PageNotFound extends React.Component{
 
             <p><i>{window.location.href}</i></p>
 
-            <p>The page you requested was not found. Search or browse for the database you want <Link to={`/`} target="_blank">here</Link>.</p>
+            <p>The page you requested was not found. <b><Link to={`/`} target="_blank">Search for Databases</Link></b></p>
 
             <p>Common problems with page URLs include:</p>
 
                 <ul>
                   <li>The URL is out of date. This website was moved onto a new software platform in May 2020, and some types of URLs no longer work.</li>
                   <li>There is a spelling or format error in the URL you used.</li>
+                  <li>Johns Hopkins no longer subscribes to the database you tried to access.</li>
                 </ul>
                 &nbsp;
             </Container>
