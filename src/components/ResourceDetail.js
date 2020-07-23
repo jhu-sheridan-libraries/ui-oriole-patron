@@ -4,6 +4,7 @@ import * as selectors from '../selectors/resource'
 import { fetchRecord } from '../actions'
 import { Container } from 'reactstrap'
 import _ from 'lodash'
+import PageNotFound from './PageNotFound'
 
 
 const mapStateToProps = (state) => {
@@ -89,7 +90,7 @@ class ResourceDetail extends Component {
         )
     } else {
       return (
-        <div></div>
+        <div><PageNotFound/></div>
       )
     }
 
