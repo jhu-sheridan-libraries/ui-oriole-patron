@@ -42,6 +42,7 @@ class ResourceList extends Component {
         <div id={ id } className='resource-list'>
           { totalRecords >= 0 && totalRecords >= 2 && <div className='count'>{ totalRecords.toLocaleString('en') } Databases</div> }
           { totalRecords === 1  && <div className='count'>{ totalRecords.toLocaleString('en') } Database</div> }
+          { totalRecords === 0  && <div className='count'>No Databases Found</div> }
           <div className='resource-content'>{ totalRecords > 0 && <Columns gap={gap} queries={queries}>{ body }</Columns> }</div>
 {/*
           { isFetching && <div>Loading...</div> }
