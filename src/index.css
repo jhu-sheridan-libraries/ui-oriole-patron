@@ -94,6 +94,8 @@ h1, #main-title, .resourceDetailTitle, #tagDetailTitle {
 
 h2 {
   font-size: 31px;
+  font-family: "Gentona";
+  text-transform: none;
 }
 
 h3 {
