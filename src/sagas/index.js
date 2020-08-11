@@ -63,6 +63,9 @@ function* fetchResource(action) { // saga to fetch single resource based on altI
     const response = yield call(getResourceOriole, altId)
     if (proxy) {
       let record = response.resources[0]
+      if (typeof record === "undefined") {
+        window.location ="/NOTFOUND-" + altId;
+     }
       if (record.proxy) {
         window.location = `http://proxy1.library.jhu.edu/login?url=${ record.url }`
       } else {
