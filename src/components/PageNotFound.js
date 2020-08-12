@@ -18,7 +18,7 @@ class PageNotFound extends React.Component{
             <p>Common problems with page URLs include:</p>
 
                 <ul>
-                  <li>The URL is out of date. This website was moved onto a new software platform in May 2020, and some types of URLs no longer work.</li>
+                  <li>The URL is out of date.</li>
                   <li>There is a spelling or format error in the URL you used.</li>
                   <li>Johns Hopkins no longer subscribes to the database you tried to access.</li>
                 </ul>
