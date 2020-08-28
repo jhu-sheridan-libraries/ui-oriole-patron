@@ -16,6 +16,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={ Search }/>
+          <Route exact path='/databases.library.jhu.edu' component={ Search }/>
           <Route path='/AZList' component={ AZList } />
           <Route path='/databases/subject/:tag' component={ TagResourceList } />
 		      <Route path='/embed/subject/:tag' component={ TagResourceList } />
