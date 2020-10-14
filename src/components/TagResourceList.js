@@ -36,7 +36,10 @@ class TagResourceList extends React.Component {
             if (!(subTag in subTags)) {
               subTags[subTag] = []
             }
-            subTags[subTag].push(resource)
+            // only push if it's not already there.  Eliminates dupes
+            if (subTags[subTag].includes(resource) === false) {
+              subTags[subTag].push(resource)
+            }
           }
         })
       })
