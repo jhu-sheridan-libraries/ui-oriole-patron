@@ -1,3 +1,7 @@
+
+// NOTE:  This is unused!  It's the old Cyzykian Way.  Dazhi's Way is much better, per TagResourceList.js
+// But leaving this code here, for now, even though it's unused
+
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
