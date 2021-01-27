@@ -3,14 +3,17 @@ import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 function returnTrimmedDescription(description) {
-  // Get rid of HTML code
-  description = description.replace(/<[^>]+>/g, '');
-  // Trim to close to 250 characters
-  let trimmedDescription = description.substr(0, 250)
-  if (trimmedDescription.length === 250) {
-    trimmedDescription = trimmedDescription.substr(0, Math.min(trimmedDescription.length, trimmedDescription.lastIndexOf(" ")))
+  // if description is defined
+  if (description) {
+    // Get rid of HTML code
+    description = description.replace(/<[^>]+>/g, '');
+    // Trim to close to 250 characters
+    let trimmedDescription = description.substr(0, 250)
+    if (trimmedDescription.length === 250) {
+      trimmedDescription = trimmedDescription.substr(0, Math.min(trimmedDescription.length, trimmedDescription.lastIndexOf(" ")))
+    }
+    return trimmedDescription
   }
-  return trimmedDescription
 }
 
 function returnAccessRestrictions(accessRestrictionsArray) {
