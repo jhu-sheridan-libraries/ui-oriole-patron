@@ -24,7 +24,7 @@ const Header = () => {
         <Container className="jhu-second-nav col-lg-10 col-md-10">
           <Row>
             <Col className="col-lg-auto col-md-auto col-sm-* col-xs-*">
-              <a href="https://catalyst.library.jhu.edu/info/libraries"><img alt="Johns Hopkins University Libraries" id="top-logo" src="/logo2.png" /></a>
+              <a href="https://library.jhu.edu"><img alt="Johns Hopkins University Libraries" id="top-logo" src="/logo2.png" /></a>
             </Col>
             <Col className="col-lg-auto col-md-auto col-sm-* col-xs-*">
               <h1><a href="/" id="main-title">Databases</a></h1>
