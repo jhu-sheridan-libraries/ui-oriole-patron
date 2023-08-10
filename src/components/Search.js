@@ -36,7 +36,7 @@ class Search extends Component {
     } else {
       this.state = initialState
     }
-    this.autoCompleteThrottled = debounce(500, props.handleSearch)
+    this.autoCompleteThrottled = debounce(1000, props.handleSearch)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,12 +46,12 @@ class Search extends Component {
   }
 
   handleClick = (e) => {
-    this.props.handleSearch(this.props, this.state.searchTerm.trim())
+    this.props.handleSearch(this.props, this.state.searchTerm)
   }
 
   handleSearchBoxKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.props.handleSearch(this.props, this.state.searchTerm.trim())
+      this.props.handleSearch(this.props, this.state.searchTerm)
     }
   }
 
