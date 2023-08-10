@@ -12,7 +12,7 @@ const Header = () => {
               <Nav>
                 <NavItem><NavLink className="jhu-first-nav" href="https://library.jhu.edu" target="_blank">Sheridan Libraries</NavLink></NavItem>
                 <NavItem><NavLink className="jhu-first-nav" href="http://welch.jhmi.edu/welchone/" target="_blank">Welch Medical Library</NavLink></NavItem>
-                <NavItem><NavLink className="jhu-first-nav" href="http://www.sais-jhu.edu/atoz/mason-library-washington-dc" target="_blank">SAIS Library</NavLink></NavItem>
+                <NavItem><NavLink className="jhu-first-nav" href="https://catalyst.library.jhu.edu/discovery/search?vid=01JHU_INST:sais_europe" target="_blank">SAIS Library</NavLink></NavItem>
                 <NavItem><NavLink className="jhu-first-nav" href="http://musiclibrary.peabody.jhu.edu/home" target="_blank">Arthur Friedheim Library</NavLink></NavItem>
                 <NavItem><NavLink className="jhu-first-nav" href=" https://www.jhuapl.edu/Library/" target="_blank">APL Library</NavLink></NavItem>
               </Nav>
