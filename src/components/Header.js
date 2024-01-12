@@ -36,7 +36,7 @@ const Header = () => {
                   <NavItem><NavLink className="jhu-second-nav-links" href="/?q=*">All Databases</NavLink></NavItem>
                   <div className="jhu-second-nav-links" id="separationGlyph">|</div>
                   <NavItem><NavLink className="jhu-second-nav-links remoteLink" href="https://catalyst.library.jhu.edu" target="_blank">Library Catalog </NavLink></NavItem>
-                  <NavItem><NavLink className="jhu-second-nav-links remoteLink" href="https://findit.library.jhu.edu/" target="_blank">Journal Lookup  </NavLink></NavItem>
+                  <NavItem><NavLink className="jhu-second-nav-links remoteLink" href="https://catalyst.library.jhu.edu/discovery/jsearch?vid=01JHU_INST:JHU" target="_blank">Journal Lookup  </NavLink></NavItem>
                 </Nav>
               </Navbar>
             </Col>
