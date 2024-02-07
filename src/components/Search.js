@@ -74,6 +74,8 @@ class Search extends Component {
               */}
               </InputGroup>
               <div id="jhutext">Databases provide access to journal articles, newspapers, audio and video recordings, data sets, dissertations, and more.</div>
+              <div id="jhutext">Most databases are restricted to students, faculty, and staff of Johns Hopkins and must not be used for commercial or other purposes not related to the mission of Johns Hopkins.</div>
+
           {
             this.props.searchTerm ? <ResourceList/> : <TagList api={process.env.REACT_APP_API_ROOT + '/oriole/tags'} />
           }
