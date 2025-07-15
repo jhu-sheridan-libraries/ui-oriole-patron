@@ -73,7 +73,7 @@ class Search extends Component {
               <Button color="primary" id="search" className="search-btn" onClick={ this.handleClick }>Search</Button>
               */}
               </InputGroup>
-	    <div id="jhutext">The Databases service is getting an updated look on Monday, August 11th. It may be unavailable between 9:00 AM and 12:00 PM Eastern Time. The basic design and function will be the same, and the permanent URL for each database will not change.
+	    <div id="jhutext"><span style={{color: 'red'}}><b>Notice:</b></span> The Databases service is getting an updated look on Monday, August 11th. It may be unavailable between 9:00 AM and 12:00 PM Eastern Time. The basic design and function will be the same, and the permanent URL for each database will not change.
 	    </div>
           {
             this.props.searchTerm ? <ResourceList/> : <TagList api={process.env.REACT_APP_API_ROOT + '/oriole/tags'} />
